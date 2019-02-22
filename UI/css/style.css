@@ -22,6 +22,7 @@ p {
 /* Utility Classes */
 .container {
   max-width: 1100px;
+  max-height: 100%;
   margin: auto;
   padding: 0 2rem;
   overflow: hidden;
@@ -33,6 +34,10 @@ p {
 
 .text-primary {
   color: #93DCFF;
+}
+
+.text-primary-blue {
+  color: #1565c0;
 }
 
 .bg-light {
@@ -67,6 +72,25 @@ p {
   margin-bottom: 2rem;
 }
 
+.btn {
+  display: inline-block;
+  color: #fff;
+  background: #93DCFF;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: #6CD4FF;
+  cursor: pointer;
+}
+
+.btn-dark {
+  background: #333;
+  color: #fff;
+}
+
 .py-1 { padding: 1.5rem 0; }
 .py-2 { padding: 2rem 0; }
 .py-3 { padding: 3rem 0; }
@@ -74,6 +98,11 @@ p {
 .p-1 { padding: 1.5rem; }
 .p-2 { padding: 2rem; }
 .p-3 { padding: 3rem; }
+
+.image-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
 
 /* Navbar */
 #navbar {
@@ -114,7 +143,7 @@ p {
 
 /* Showcase */
 #showcase {
-  background: #333 url('../images/email-showcase.png') no-repeat center center/cover;
+  background: #333 url('../images/email-showcase.png') no-repeat right center/cover;
   height: 100vh;
   color: #fff;
 }
@@ -153,4 +182,80 @@ p {
   padding: 1rem;
   border-radius: 50%;
   margin-bottom: 1rem;
+}
+
+/* Section: Login */
+#login-showcase {
+  background: url('../images/email-showcase.png') no-repeat right
+  center/cover;
+  height: 100vh;
+}
+
+#login {
+  margin: 10rem auto;
+  max-width: 30rem;
+  padding: 1.25rem; 
+}
+
+#logo-div #logo-image {
+  text-align: center;
+}
+
+#login #logo-div {
+  display: block;
+  margin: 0 auto;
+}
+
+#login h1 a {
+  color: #fff;
+}
+
+#login h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#login footer {
+  text-align: center;
+}
+
+#login .form-wrap {
+  background: #fff;
+  padding: 0.94rem 1.563rem;
+  color: #333;
+}
+
+#login .form-wrap h1 {
+  text-align: center;
+}
+
+#login .form-wrap .form-group {
+  margin-top: 0.94rem;
+}
+
+.form-wrap .form-group label {
+  display: block;
+  color: #666;
+}
+
+.form-wrap .form-group input {
+  width: 100%;
+  padding: 0.625rem;
+  border: #ddd 1px solid;
+  border-radius: 0.3125rem;
+}
+
+.form-wrap .form-group input:focus {
+  border: 2px solid #6CD4FF;
+}
+
+.form-wrap button {
+  margin-top: 1.25rem;
+  width: 100%;
+  padding: 0.625rem;
+}
+
+.form-wrap .bottom-text {
+  font-size: 0.8125rem;
+  margin-top: 1.25rem;
 }
