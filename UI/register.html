@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/logo/favicon-16x16.png" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Smart-phone Responsiveness -->
+  <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
+  <!-- Widescreen Responsiveness -->
+  <link rel="stylesheet" media="screen and (min-width: 1100px)" href="css/widescreen.css">
+  <title>EPIC-Mail | Sign Up</title>
+</head>
+
+<body id="form-showcase">
+
+  <div class="container">
+    <!-- Section: Registration form -->
+    <section id="sign-up">
+      <div id="logo-div">
+        <div class="text-center">
+          <img src="./images/logo/favicon-96x96.png" class="image-logo" alt="Envelope logo">
+        </div>
+        <h1 class="text-center m-bottom-1">
+          <a href="./index.html"><span class="text-primary-blue">EPIC</span>-Em<i class="fas fa-at fa-1x"></i>il</a>
+        </h1>
+      </div>
+      <div class="form-wrap">
+        <h1 class="text-center">Sign Up</h1>
+        <form action="">
+          <div class="sign-up-item">
+            <div class="form-group div-item">
+              <label for="firstname">First Name</label>
+              <input type="text" name="firstname" id="firstname" placeholder="Enter firstname" required>
+            </div>
+            <div class="form-group div-item">
+              <label for="lastname">Last Name</label>
+              <input type="text" name="lastname" id="lastname" placeholder="Enter lastname" required>
+            </div>
+          </div>
+          <div class="sign-up-item">
+            <div class="form-group div-item">
+              <label for="othername">Other Name</label>
+              <input type="text" name="othername" id="othername" placeholder="Othername(Optional)">
+            </div>
+            <div class="form-group div-item">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Enter Email" required>
+            </div>
+          </div>
+          <div class="sign-up-item">
+            <div class="form-group div-item">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group div-item">
+              <label for="cpassword">Password</label>
+              <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" required>
+            </div>
+          </div>
+          <button type="submit" class="btn">Submit</button>
+          <p class="bottom-text text-center">
+            By clicking the Submit button, you agree to our
+            <a href="#" class="text-primary-blue">Terms & Conditions</a>
+          </p>
+        </form>
+      </div>
+      <footer class="text-center">
+        <p>Already have an account? <a href="./login.html" class="text-primary-blue">Login here</a></p>
+      </footer>
+    </section>
+  </div>
+
+</body>
+
+</html>
