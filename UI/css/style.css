@@ -99,6 +99,10 @@ p {
 .p-2 { padding: 2rem; }
 .p-3 { padding: 3rem; }
 
+.m-bottom-1 {
+  margin-bottom: 1rem;
+}
+
 .image-logo {
   width: 2.5rem;
   height: 2.5rem;
@@ -184,49 +188,29 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Section: Login */
-#login-showcase {
+/* Body: forms showcase */
+#form-showcase {
   background: url('../images/email-showcase.png') no-repeat right
   center/cover;
   height: 100vh;
 }
 
+/* Section: Login */
 #login {
   margin: 10rem auto;
   max-width: 30rem;
   padding: 1.25rem; 
 }
 
-#logo-div #logo-image {
-  text-align: center;
-}
-
-#login #logo-div {
-  display: block;
-  margin: 0 auto;
-}
-
-#login h1 a {
+#login h1 a,
+#sign-up h1 a {
   color: #fff;
-}
-
-#login h1 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-#login footer {
-  text-align: center;
 }
 
 #login .form-wrap {
   background: #fff;
   padding: 0.94rem 1.563rem;
   color: #333;
-}
-
-#login .form-wrap h1 {
-  text-align: center;
 }
 
 #login .form-wrap .form-group {
@@ -258,4 +242,38 @@ p {
 .form-wrap .bottom-text {
   font-size: 0.8125rem;
   margin-top: 1.25rem;
+}
+
+/* Section: Sign Up */
+#sign-up {
+  margin: 10rem auto;
+  max-width: 40rem;
+  padding: 1.0rem; 
+}
+
+.sign-up-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign-up-item .div-item {
+  flex: 1;
+}
+
+#sign-up .form-wrap {
+  background: #fff;
+  padding: 2rem 1rem;
+  color: #333;
+}
+
+#sign-up .form-wrap .form-group {
+  margin-top: 0.98rem;
+}
+
+
+#sign-up .form-wrap .form-group input {
+  width: 95%;
+  padding: 0.625rem;
+  border: #ddd 1px solid;
+  border-radius: 0.3125rem;
 }

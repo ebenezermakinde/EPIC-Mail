@@ -16,18 +16,32 @@
   margin-bottom: 0;
 }
 
-/* Login form */
-#login-showcase {
+/* Body: form showcase */
+#form-showcase {
   background: url('../images/email-showcase.png') no-repeat center
   center/cover;
   height: 100vh;
 }
 
+/* Login form */
 #login {
   margin: 10rem auto;
   max-width: 45rem;
   padding: 1.55rem; 
   font-size: 1.35rem;
+}
+
+/* Sing-up form */
+#sign-up {
+  margin: 10rem auto;
+  max-width: 45rem;
+  font-size: 1.5rem;
+  padding: 1.0rem; 
+}
+
+#sign-up footer p,
+#sign-up .form-wrap p {
+  font-size: 1.25rem;
 }
 
 /* Smartphone */
@@ -56,6 +70,18 @@
     padding: 1.55rem; 
     font-size: 0.75rem;
   }
+
+  #sign-up {
+    margin: 1.5rem auto;
+    max-width: 45rem;
+    font-size: 0.75rem;
+    padding: 0.6rem; 
+  }
+
+  #sign-up footer p,
+  #sign-up .form-wrap p {
+  font-size: 0.75rem;
+}
 
 }
 
