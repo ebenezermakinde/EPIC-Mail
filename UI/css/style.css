@@ -28,6 +28,11 @@ p {
   overflow: hidden;
 }
 
+.container-fluid {
+  max-width: 90%;
+  overflow: hidden;
+}
+
 .text-center {
   text-align:center;
 }
@@ -239,29 +244,29 @@ p {
   margin-top: 0.94rem;
 }
 
-.form-wrap .form-group label {
+#login .form-wrap .form-group label {
   display: block;
   color: #666;
 }
 
-.form-wrap .form-group input {
+#login .form-wrap .form-group input {
   width: 100%;
   padding: 0.625rem;
   border: #ddd 1px solid;
   border-radius: 0.3125rem;
 }
 
-.form-wrap .form-group input:focus {
+#login .form-wrap .form-group input:focus {
   border: 2px solid #6CD4FF;
 }
 
-.form-wrap button {
+#login .form-wrap button {
   margin-top: 1.25rem;
   width: 100%;
   padding: 0.625rem;
 }
 
-.form-wrap .bottom-text {
+#login .form-wrap .bottom-text {
   font-size: 0.8125rem;
   margin-top: 1.25rem;
 }
@@ -402,4 +407,35 @@ p {
 
 .table td {
   padding: 5px;
+}
+
+/* Div: Compose message */
+ #compose-box {
+   margin-right: 10%;
+ }
+
+ #compose-box .form-wrap #compose-btn {
+  display: flex;
+  justify-content: center;
+ }
+
+ #compose-box .form-wrap #compose-btn button {
+   max-width: 20%;
+   margin: 0.5rem 0.2rem;
+ }
+
+ #compose-box .form-wrap .form-group label[for="message-body"],
+ #compose-box .form-wrap .form-group label[for="to"] {
+   display: none;
+ }
+
+#compose-box .form-wrap textarea {
+  border: none;
+}
+
+#compose-box .form-wrap .form-group input {
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #333;
 }

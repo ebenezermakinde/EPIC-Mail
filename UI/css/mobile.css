@@ -139,6 +139,18 @@
     padding: 0.2rem 0.3rem;
     border-radius: 2rem;
   }
+
+  /* Mailbox section */
+  .mailbox {
+    margin-top: 0.3rem;
+  }
+
+  /* Compose Message */
+  #compose-box .form-wrap #compose-btn button {
+    font-size: 0.4rem;
+    padding: 0.5rem 0.5rem;
+  }
+
 }
 
 @media (max-height: 568px) {
