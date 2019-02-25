@@ -14,7 +14,9 @@
   <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
   <!-- Widescreen Responsiveness -->
   <link rel="stylesheet" media="screen and (min-width: 1100px)" href="css/widescreen.css">
-  <title>Sent-Item | EPIC-Mail</title>
+  <!-- Mini-wordprocessor -->
+  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <title>Compose Message | EPIC-Mail</title>
 </head>
 
 <body class="bg-light">
@@ -32,7 +34,7 @@
       <li><a href="#"><img src="./images/profile-img/obey-photo.jpeg" alt="" class="user-avatar"></a></li>
     </ul>
   </nav>
-  <!-- Section: Sent-Item -->
+  <!-- Section: Aside -->
   <section class="mailbox">
     <div class="box">
       <aside class="aside">
@@ -64,47 +66,39 @@
         </ul>
       </aside>
     </div>
-    <div class="box inbox">
-      <div class="inbox1">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td table-data="Recipient">DevCamp</td>
-              <td table-data="Title"><i class="fas fa-reply"></i> RE: Bootcamp Interview - Dear Applicant, This is a invitation to the foremost software
-                bootcamp in the company. We ......</td>
-              <td table-data="Date">08:30am</td>
-            </tr>
-            <tr>
-              <td table-data="Recipient">Mary Amaka </td>
-              <td table-data="Title"><i class="fas fa-reply"></i> RE: What happened? - I'm so sorry babes 💐💓. You are always on mind. I will make it.......</td>
-              <td table-data="Date">24 Feb</td>
-            </tr>
-            <tr>
-              <td table-data="Recipient">Frank Bishop</td>
-              <td table-data="Title">Guy how far na? - Frank, Which way na? We suppose meet for that bar. Guy call me</td>
-              <td table-data="Date">01/12/2018</td>
-            </tr>
-            <tr>
-              <td table-data="Recipient">Umar Alimi</td>
-              <td table-data="Title">Request for Quote - Hi Umar, This is a request for forex quotation for Allumaudabe.......</td>
-              <td table-data="Date">01/12/2018</td>
-            </tr>
-            <tr>
-              <td table-data="Recipient">Frank Bishop</td>
-              <td table-data="Title">Guy how far na? - Frank, Which way na? We suppose meet for that bar. Guy call me</td>
-              <td table-data="Date">01/12/2018</td>
-            </tr>
-            <tr>
-              <td table-data="Recipient">Frank Bishop</td>
-              <td table-data="Title">Guy how far na? - Frank, Which way na? We suppose meet for that bar. Guy call me</td>
-              <td table-data="Date">01/12/2018</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Div: Compose Message -->
+    <div class="box" id="compose-box">
+      <div class="compose">
+        <div class="message-header bg-primary text-center">
+          <h3 class="message-title">New Message</h3>
+        </div>
+        <div class="message-body form-wrap">
+          <form action="">
+            <div class="form-group">
+              <label for="to">To</label>
+              <input type="text" name="to" id="to" placeholder="Recipient email">
+            </div>
+            <div class="form-group">
+              <input type="text" name="message-title" id="message-title" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <label for="message-body">Message</label>
+              <textarea name="message-body" id="message-body" cols="200" rows="30"></textarea>
+            </div>
+            <hr>
+            <div id="compose-btn">
+              <button class="btn">Submit</button>
+              <button class="btn">Save as draft</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
+  <script>
+    CKEDITOR.replace('message-body');
+  </script>
 </body>
 
 </html>
