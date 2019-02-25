@@ -85,6 +85,14 @@
   display: inline;
 }
 
+.aside ul li a:hover,
+.aside ul li a:focus {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 0.5rem 0.4rem;
+  border-radius: 2rem;
+}
+
 /* Smartphone */
 @media (max-width: 500px) {
   #navbar {
@@ -122,6 +130,14 @@
   #sign-up footer p,
   #sign-up .form-wrap p {
     font-size: 0.75rem;
+  }
+
+  .aside ul li a:hover,
+  .aside ul li a:focus {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 0.2rem 0.3rem;
+    border-radius: 2rem;
   }
 }
 

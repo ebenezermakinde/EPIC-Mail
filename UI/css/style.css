@@ -119,11 +119,15 @@ p {
 }
 
 .inbox-alert {
-  padding: 0.4rem 0.4rem;
+  padding: 0.1rem 0.1rem;
   background: #ddd;
   color: red;
   font-weight: bold;
   border-radius: 50%;
+}
+
+.draft-alert {
+  color: red; 
 }
 
 /* Navbar */
@@ -322,10 +326,14 @@ p {
   list-style: none;
 }
 
+#navbar-user ul li sup{
+  margin: 0 -0.3rem;
+}
+
 #navbar-user ul li a,
 #navbar-user ul li  {
   color: #fff;
-  margin: 0 0.2rem;
+  margin: 0 0.3rem;
 }
 
 .mailbox {
@@ -356,8 +364,7 @@ p {
 }
 
 .aside ul li a:hover,
-.aside ul li a:focus,
-a:active {
+.aside ul li a:focus {
   background: rgba(0,0,0,0.4);
   color: #fff;
   padding: 0.75rem 0.4rem;
