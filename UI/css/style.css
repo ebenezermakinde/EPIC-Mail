@@ -135,6 +135,16 @@ p {
   color: red; 
 }
 
+.line-height {
+  line-height: 2;
+}
+
+.email-labels {
+  background: #ddd; 
+  padding: 0.5rem; 
+  border-radius: 2rem;
+}
+
 /* Navbar */
 #navbar {
   display: flex;
@@ -385,6 +395,7 @@ p {
   flex: 10;
   background: #fff;
   border-left: 1px solid #fff;
+  margin-right: 3rem;
 }
 
 .inbox {
@@ -447,4 +458,9 @@ p {
   width: 100%;
   border: none;
   border-bottom: 1px solid #333;
+}
+
+/* DIV: Message Thread */
+#view-message > div > a {
+  color: #333;
 }
