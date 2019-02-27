@@ -402,8 +402,16 @@ p {
   background: #f4f4f4;
 }
 
+.table tr {
+  cursor: pointer;
+}
+
 .table tr:nth-of-type(even) {
   background: #ddd;
+}
+
+.table tr:hover {
+  border: 1px solid #6CD4FF;
 }
 
 .table td {
