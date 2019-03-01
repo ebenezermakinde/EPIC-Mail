@@ -1,4 +1,4 @@
-// Variable declaration.
+// Variable declaration: Mailbox.
 const viewMessage = document.querySelector('#view-message');
 const table = document.querySelector('.table');
 const rows = document.querySelectorAll('tr[data-href]');

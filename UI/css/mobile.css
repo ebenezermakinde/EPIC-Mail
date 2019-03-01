@@ -151,6 +151,23 @@
     padding: 0.5rem 0.5rem;
   }
 
+  /* Create Group */
+  .box {
+    margin-top: 3rem;
+  }
+
+  .create-grp {
+    font-size: 0.75rem;
+  }
+
+  .form-div .form-group > input[type="text"],
+  .form-div .form-group select {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    color: #333;
+    font-size: 0.75rem;
+    border: 0.09rem solid #333;
+  }
 }
 
 @media (max-height: 568px) {
