@@ -108,6 +108,9 @@ p {
   margin-bottom: 1rem;
 }
 
+.m-top-1 {
+  margin-top: 1rem;
+}
 .image-logo {
   width: 2rem;
   height: 2rem;
@@ -143,6 +146,16 @@ p {
   background: #ddd; 
   padding: 0.5rem; 
   border-radius: 2rem;
+}
+
+.group-widget {
+  background: #ddd; 
+  padding: 0.2rem 0.05rem; 
+}
+
+.group-members-widget {
+  background: #ddd; 
+  padding: 0.2rem 0.05rem; 
 }
 
 /* Navbar */
@@ -463,4 +476,57 @@ p {
 /* DIV: Message Thread */
 #view-message > div > a {
   color: #333;
+}
+
+/* Div: Create group */
+.create-grp .form-div {
+ max-width: 50rem;
+ margin: 0 auto;
+}
+
+.form-div .form-group > input[type="text"],
+.form-div .form-group select {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.65rem 0;
+  font-family:'Roboto', sans-serif;
+  color: #333;
+  font-size: 1rem;
+  border: 0.09rem solid #333;
+}
+
+.form-div .form-group > input[type="text"]:focus,
+.form-div .form-group select:focus {
+  border: 0.01rem solid #6CD4FF;
+}
+
+
+
+.create-grp .group-list {
+  display: flex;
+  max-width: 43rem;
+  margin: 1.75rem auto;
+}
+
+.create-grp .group-list ul {
+  list-style: none;
+}
+
+.create-grp .group-list ul li {
+  line-height: 1.6rem;
+  margin-left: 0.5rem;
+}
+
+.create-grp .group-list ul li a {
+  color: #333;
+}
+
+
+.create-grp .group-list .list:first-child {
+  flex: 5;
+  border-right: 2px solid #333;
+}
+
+.create-grp .group-list .list:last-child {
+  flex: 7;
 }
