@@ -367,6 +367,7 @@ p {
 
 .mailbox {
   display: flex;
+  max-height: 50rem;
   justify-content: space-between;
   margin-top: 1.75rem;
 }
@@ -409,12 +410,15 @@ p {
   background: #fff;
   border-left: 1px solid #fff;
   margin-right: 3rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .inbox {
   display: flex;
   flex-direction: column;
 }
+
 
 /* Table Styling */
 .table {
