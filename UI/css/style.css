@@ -238,11 +238,18 @@ p {
   margin-bottom: 1rem;
 }
 
+/* Footer: homepage */
+#homepage-showcase #main-footer {
+  position: relative;
+  bottom: 0;
+}
+
 /* Body: forms showcase */
 #form-showcase {
   background: url('../images/email-showcase.png') no-repeat right
   center/cover;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* Section: Login */
@@ -369,7 +376,6 @@ p {
   display: flex;
   max-height: 50rem;
   justify-content: space-between;
-  margin-top: 1.75rem;
 }
 
 .box {
@@ -409,7 +415,7 @@ p {
   flex: 10;
   background: #fff;
   border-left: 1px solid #fff;
-  margin-right: 3rem;
+  margin: 2rem 0 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -419,11 +425,16 @@ p {
   flex-direction: column;
 }
 
+.box #view-message,
+.box #view-message h3 {
+  font-size: 0.9rem;
+}
 
 /* Table Styling */
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.9rem;
 }
 
 .table #table-header {
@@ -434,12 +445,8 @@ p {
   cursor: pointer;
 }
 
-.table tr:nth-of-type(even) {
-  background: #ddd;
-}
-
 .table tr:hover {
-  border: 1px solid #6CD4FF;
+  background: #ddd;
 }
 
 .table td {
@@ -533,4 +540,11 @@ p {
 
 .create-grp .group-list .list:last-child {
   flex: 7;
+}
+
+/* Footer: Remains at the bottom */
+#main-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
