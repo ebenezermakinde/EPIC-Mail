@@ -22,5 +22,16 @@ class UserController {
       }],
     });
   }
+
+  static login(req, res) {
+    const { foundUser } = req.body;
+    const token = generateToken(foundUser);
+    return res.status(200).json({
+      status: 200,
+      data: [{
+        token,
+      }],
+    });
+  }
 }
 export default UserController;

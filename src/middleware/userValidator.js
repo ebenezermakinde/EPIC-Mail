@@ -83,6 +83,42 @@ class UserValidator {
     req.body.password = password;
     return next();
   }
+
+  static loginValidator(req, res, next) {
+    let { email, password } = req.body;
+    if (!email) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Email is required',
+      });
+    }
+    email = email.toLowerCase().trim();
+    const foundUser = users.find(user => user.email === email);
+    if (!foundUser) {
+      return res.status(401).json({
+        status: 401,
+        error: 'Authentication failed',
+      });
+    }
+
+    if (!password) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Pasword is required',
+      });
+    }
+
+    password = password.trim();
+    if (foundUser && password !== foundUser.password) {
+      return res.status(401).json({
+        status: 401,
+        error: 'Authentication failed',
+      });
+    }
+    req.body.foundUser = foundUser;
+    req.body.password = password;
+    return next();
+  }
 }
 
 export default UserValidator;
