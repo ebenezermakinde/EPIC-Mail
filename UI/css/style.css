@@ -123,7 +123,7 @@ p {
 }
 
 .unread-inbox {
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .inbox-alert {
@@ -297,14 +297,9 @@ p {
   padding: 0.625rem;
 }
 
-#login .form-wrap .bottom-text {
-  font-size: 0.8125rem;
-  margin-top: 1.25rem;
-}
-
 /* Section: Sign Up */
 #sign-up {
-  margin: 10rem auto;
+  margin: 9rem auto;
   max-width: 40rem;
   padding: 1.0rem; 
 }
@@ -395,6 +390,10 @@ p {
   color: #333;
 }
 
+.aside ul li a span {
+  font-size: 0.9rem;
+}
+
 .aside ul li sup {
   display: none;
 }
@@ -404,7 +403,7 @@ p {
   background: rgba(0,0,0,0.4);
   color: #fff;
   padding: 0.75rem 0.4rem;
-  border-radius: 2rem;
+  border-radius: 5px;
 }
 
 .box:first-child {
@@ -544,7 +543,7 @@ p {
 
 /* Footer: Remains at the bottom */
 #main-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
