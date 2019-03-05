@@ -32,14 +32,8 @@
 
 /* Sing-up form */
 #sign-up {
-  margin: 5rem auto;
+  margin: 7.5rem auto;
   max-width: 45rem;
-  font-size: 1rem;
-  padding: 1rem;
-}
-
-#sign-up footer p,
-#sign-up .form-wrap p {
   font-size: 1rem;
 }
 
@@ -114,17 +108,14 @@
   }
 
   #login {
-    margin: 5rem auto;
     max-width: 45rem;
     padding: 1.55rem;
     font-size: 0.75rem;
   }
 
   #sign-up {
-    margin: 1.5rem auto;
     max-width: 45rem;
     font-size: 0.75rem;
-    padding: 0.6rem;
   }
 
   #sign-up footer p,
