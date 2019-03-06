@@ -266,12 +266,12 @@ p {
 
 #login .form-wrap {
   background: #fff;
-  padding: 0.94rem 1.563rem;
+  padding: 0.7rem 1.563rem;
   color: #333;
 }
 
 #login .form-wrap .form-group {
-  margin-top: 0.94rem;
+  margin-top: 1rem;
 }
 
 #login .form-wrap .form-group label {
