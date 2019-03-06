@@ -23,16 +23,16 @@
 }
 
 /* Login form */
-#login {
-  margin: 10rem auto;
+#login .form-wrap {
+  margin: 5rem auto;
   max-width: 45rem;
   padding: 1.55rem;
   font-size: 1rem;
 }
 
 /* Sing-up form */
-#sign-up {
-  margin: 7.5rem auto;
+#sign-up .form-wrap {
+  margin: 3.5rem auto;
   max-width: 45rem;
   font-size: 1rem;
 }
@@ -107,20 +107,29 @@
     top: 110px;
   }
 
-  #login {
-    max-width: 45rem;
-    padding: 1.55rem;
+   #login .form-wrap {
+    margin-top: -7rem;
+    max-width: 20rem;
+    padding: 0.2rem 1.55rem;
     font-size: 0.75rem;
+  } 
+
+
+  #sign-up .form-wrap {
+    margin-top: -6.7rem;
+    max-width: 45rem;
+    font-size: 0.75rem;
+    padding: 0.2rem 1.6rem
   }
 
-  #sign-up {
-    max-width: 45rem;
-    font-size: 0.75rem;
+  #sign-up .form-wrap > h1,
+  #login .form-wrap > h1 {
+    font-size: 0.85rem;
   }
 
-  #sign-up footer p,
   #sign-up .form-wrap p {
-    font-size: 0.75rem;
+    font-size: 0.55rem;
+    padding: 0;
   }
 
   .aside ul li a:hover,
