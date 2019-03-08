@@ -1,4 +1,5 @@
 # :star: EPIC-M@il :e-mail: :postbox:
+[![Build Status](https://travis-ci.com/ebenezermakinde/EPIC-Mail.svg?branch=develop)](https://travis-ci.com/ebenezermakinde/EPIC-Mail)
 [![Maintainability](https://api.codeclimate.com/v1/badges/aa33b93685257e38c4c0/maintainability)](https://codeclimate.com/github/ebenezermakinde/EPIC-Mail/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ebenezermakinde/EPIC-Mail/badge.svg?branch=develop)](https://coveralls.io/github/ebenezermakinde/EPIC-Mail?branch=develop)
 
