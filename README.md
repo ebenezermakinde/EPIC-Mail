@@ -1,4 +1,6 @@
 # :star: EPIC-M@il :e-mail: :postbox:
+[![Maintainability](https://api.codeclimate.com/v1/badges/aa33b93685257e38c4c0/maintainability)](https://codeclimate.com/github/ebenezermakinde/EPIC-Mail/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/ebenezermakinde/EPIC-Mail/badge.svg?branch=develop)](https://coveralls.io/github/ebenezermakinde/EPIC-Mail?branch=develop)
 
 ## Project Overview
 The internet is increasingly becoming an integral part of lives. Ever since the invention of electronic mail by Ray Tomlinson , emails have grown to become the primary medium of exchanging information over the internet between two or more people, until the advent of Instant Messaging (IM) Apps.

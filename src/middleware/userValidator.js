@@ -26,7 +26,7 @@ class UserValidator {
     if (!email) {
       return res.status(400).json({
         status: 400,
-        error: 'Email should be a string',
+        error: 'Email is required',
       });
     }
     const nameValidate = /^[a-zA-Z ]+$/;
@@ -55,14 +55,14 @@ class UserValidator {
     if (email.length < 10 || email.length > 30) {
       return res.status(400).json({
         status: 400,
-        error: 'Email should be 10 to 50 characters long',
+        error: 'Email is too short',
       });
     }
     const duplicateEmail = users.find(user => user.email === email);
     if (duplicateEmail) {
-      return res.status(400).json({
-        status: 400,
-        error: 'Email already exists!',
+      return res.status(409).json({
+        status: 409,
+        error: 'Email already exists',
       });
     }
 
@@ -73,10 +73,10 @@ class UserValidator {
         error: 'Password is required',
       });
     }
-    if (password.length < 8 || password.length > 20) {
+    if (password.length < 8 || password.length > 15) {
       return res.status(400).json({
         status: 400,
-        error: 'Password should be 8 to 20 characters long',
+        error: 'Password is too short',
       });
     }
     req.body.email = email;
@@ -104,7 +104,7 @@ class UserValidator {
     if (!password) {
       return res.status(400).json({
         status: 400,
-        error: 'Pasword is required',
+        error: 'Password is required',
       });
     }
 
@@ -112,7 +112,7 @@ class UserValidator {
     if (foundUser && password !== foundUser.password) {
       return res.status(401).json({
         status: 401,
-        error: 'Authentication failed',
+        error: 'Incorrect login details',
       });
     }
     req.body.foundUser = foundUser;
