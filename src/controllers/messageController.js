@@ -10,6 +10,21 @@ class MessageController {
     });
   }
 
+  // Get one email.
+  static getOneEmail(req, res) {
+    const foundEmail = messages.find(message => message.id === Number(req.params.messageId));
+    if (!foundEmail) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Email was not found',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: [foundEmail],
+    });
+  }
+
   // Get all sent emails
   static getSentEmail(req, res) {
     const sent = messages.filter(message => message.status === 'sent');
@@ -81,5 +96,5 @@ class MessageController {
 
 export const {
   getAllMessages, getSentEmail, getUnreadEmail, sendEmail,
-  deleteEmail,
+  deleteEmail, getOneEmail,
 } = MessageController;
