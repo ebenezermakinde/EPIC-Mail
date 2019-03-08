@@ -1,7 +1,7 @@
 version: "2"
 exclude_patterns:
   - "UI/**/*"
-  - "server/tests"
+  - "src/test"
 checks:
   return-statements:
     enabled: false
