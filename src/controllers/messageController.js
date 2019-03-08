@@ -58,8 +58,28 @@ class MessageController {
       data: [newMessage],
     });
   }
+
+  // Delete an email
+  static deleteEmail(req, res) {
+    const email = messages.find(message => message.id === Number(req.params.messageId));
+    if (!email) {
+      return res.status(404).json({
+        status: 404,
+        error: 'The message was not found!',
+      });
+    }
+    const index = messages.indexOf(email);
+    messages.splice(index, 1);
+    return res.status(200).json({
+      status: 200,
+      data: [{
+        message: 'Email has been successfully deleted',
+      }],
+    });
+  }
 }
 
 export const {
   getAllMessages, getSentEmail, getUnreadEmail, sendEmail,
+  deleteEmail,
 } = MessageController;
