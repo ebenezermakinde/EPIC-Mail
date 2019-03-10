@@ -1,5 +1,10 @@
 import moment from 'moment';
-import messages from '../utils/dummyMessages';
+import { receivedMessages, sentMessages } from '../utils/dummyMessages';
+import { arrayFlatten } from '../helpers/arrayFlatten';
+
+const email = [...receivedMessages, ...sentMessages];
+const messages = arrayFlatten(email);
+
 
 class MessageController {
   // Get all emails
@@ -12,13 +17,7 @@ class MessageController {
 
   // Get one email.
   static getOneEmail(req, res) {
-    const foundEmail = messages.find(message => message.id === Number(req.params.messageId));
-    if (!foundEmail) {
-      return res.status(404).json({
-        status: 404,
-        error: 'Email was not found',
-      });
-    }
+    const { foundEmail } = req.body;
     return res.status(200).json({
       status: 200,
       data: [foundEmail],
@@ -68,22 +67,16 @@ class MessageController {
       status: 'sent',
     };
     messages.push(newMessage);
-    return res.status(200).json({
-      status: 200,
+    return res.status(201).json({
+      status: 201,
       data: [newMessage],
     });
   }
 
   // Delete an email
   static deleteEmail(req, res) {
-    const email = messages.find(message => message.id === Number(req.params.messageId));
-    if (!email) {
-      return res.status(404).json({
-        status: 404,
-        error: 'The message was not found!',
-      });
-    }
-    const index = messages.indexOf(email);
+    const { foundEmail } = req.body;
+    const index = messages.indexOf(foundEmail);
     messages.splice(index, 1);
     return res.status(200).json({
       status: 200,

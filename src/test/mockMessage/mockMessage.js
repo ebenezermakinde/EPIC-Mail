@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const validPostData = [
   {
     subject: 'Test message',
@@ -17,4 +16,4 @@ export const invalidPost = [
   },
 ];
 
-export const emptyMessage = [];
+export const noSentItem = [];
