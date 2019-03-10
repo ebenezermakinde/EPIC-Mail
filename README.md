@@ -32,7 +32,7 @@ Project is currently being managed with Pivotal Tracker, a project management to
 
 ### API Endpoints.
 ##### Base URL 
-[Heroku](https://ireporter-myapp.herokuapp.com/api/v1)
+[Heroku](https://epic-mail-myapp.herokuapp.com/)
 
 S/N | Verb   | Endpoint         | Description             |
 ---:| -------|------------------|-------------------------|
