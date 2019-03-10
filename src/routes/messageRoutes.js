@@ -4,6 +4,7 @@ import {
   deleteEmail, getOneEmail,
 } from '../controllers/messageController';
 import MessageValidator from '../middleware/messageValidator';
+import { findEmailById } from '../middleware/findEmailById';
 
 const messageRouter = express.Router();
 
@@ -15,7 +16,7 @@ messageRouter.get('', getAllMessages);
 messageRouter.post('', emailValidator, sendEmail);
 messageRouter.get('/sent', getSentEmail);
 messageRouter.get('/unread', getUnreadEmail);
-messageRouter.get('/:messageId', getOneEmail);
-messageRouter.delete('/:messageId', deleteEmail);
+messageRouter.delete('/:messageId', findEmailById, deleteEmail);
+messageRouter.get('/:messageId', findEmailById, getOneEmail);
 
 export default messageRouter;

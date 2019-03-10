@@ -29,3 +29,25 @@ The UI templates can be found here [EPIC M@il](https://ebenezermakinde.github.io
 ### Pivotal Tracker
 
 Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories on the [EPIC M@il Pivotal Tracker Board](https://www.pivotaltracker.com/n/projects/2314369)
+
+### API Endpoints.
+##### Base URL 
+[Heroku](https://ireporter-myapp.herokuapp.com/api/v1)
+
+S/N | Verb   | Endpoint         | Description             |
+---:| -------|------------------|-------------------------|
+  1 | Post   | /auth/signup     | Create a user account   |
+  2 | Post   | /auth/login      | Sign in a user          |
+  3 | Get    | /messages        | Get all received emails |
+  4 | Get    | /messages/unread | Get all unread emails   |
+  5 | Get    | /messages/sent   | Get all emails sent     |
+  6 | Get    | /messages/id     | Get a specific email    |
+  7 | Post   | /messages        | Send email to users     |
+  8 | Delete | /messages/id     | Delete an email         |
+
+
+### Author
+Ebenezer Makinde
+
+### Acknowledgements
+* Andela

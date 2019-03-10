@@ -6,7 +6,7 @@ import app from '../server';
 import messages from '../utils/dummyMessages';
 
 // Get our  mockMessages
-import { validPostData, invalidPost, emptyMessage } from './mockMessage/mockMessage';
+import { validPostData, invalidPost } from './mockMessage/mockMessage';
 
 const { should, expect } = chai;
 should();
@@ -36,7 +36,7 @@ describe('Emails test', () => {
       it('should return status code 200 and get one email', (done) => {
         chai
           .request(app)
-          .get('/api/v1/messages')
+          .get('/api/v1/messages/1')
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
@@ -44,6 +44,23 @@ describe('Emails test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(200);
             expect(res.body.data).to.be.a('array');
+            done();
+          });
+      });
+    });
+    describe('Get all sent emails', () => {
+      it('should return status code 200 and get all sent emails', (done) => {
+        chai
+          .request(app)
+          .get('/api/v1/messages/sent')
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('status');
+            res.body.should.have.property('data');
+            expect(res.body.status).to.equal(200);
+            expect(res.body.data).to.be.a('array');
+            expect(res.body.data[0].status).to.equal('sent');
             done();
           });
       });
@@ -82,20 +99,6 @@ describe('Emails test', () => {
           });
       });
     });
-    // describe('Get empty unread message', () => {
-    //   it('should return status code 404 and send an error message', (done) => {
-    //     chai
-    //       .request(app)
-    //       .get('/api/v1/messages/unread')
-    //       .end((err, res) => {
-    //         res.should.have.status(404);
-    //         res.body.should.be.a('object');
-    //         expect(res.body.status).to.equal(404);
-    //         expect(res.body.error).to.equal('No unread emails');
-    //         done();
-    //       });
-    //   });
-    // });
   });
 
   describe('POST', () => {
@@ -106,11 +109,11 @@ describe('Emails test', () => {
           .post('/api/v1/messages')
           .send(validPostData[0])
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
             res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
+            expect(res.body.status).to.equal(201);
             expect(res.body.data).to.be.a('array');
             expect(res.body.data[0].subject).to.be.a('string');
             expect(res.body.data[0].message).to.be.a('string');
@@ -187,7 +190,7 @@ describe('Emails test', () => {
             res.body.should.have.property('status');
             res.body.should.have.property('error');
             expect(res.body.status).to.equal(404);
-            expect(res.body.error).to.equal('The message was not found!');
+            expect(res.body.error).to.equal('Email was not found');
             done();
           });
       });
