@@ -16,7 +16,7 @@ chai.use(chaiHttp);
 
 describe('Emails test', () => {
   describe('GET', () => {
-    describe('Get all emails', () => {
+    describe('Get all recieved emails', () => {
       it('should return status code 200 and get all emails', (done) => {
         chai
           .request(app)
@@ -44,23 +44,6 @@ describe('Emails test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(200);
             expect(res.body.data).to.be.a('array');
-            done();
-          });
-      });
-    });
-    describe('Get all sent emails', () => {
-      it('should return status code 200 and get all sent emails', (done) => {
-        chai
-          .request(app)
-          .get('/api/v1/messages/sent')
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0].status).to.equal('sent');
             done();
           });
       });
