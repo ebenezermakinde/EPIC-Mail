@@ -16,6 +16,17 @@ class UserController {
     const token = generateToken(newUser);
     users.push(newUser);
     return res.status(201).json({
+      status: 201,
+      data: [{
+        token,
+      }],
+    });
+  }
+
+  static login(req, res) {
+    const { foundUser } = req.body;
+    const token = generateToken(foundUser);
+    return res.status(200).json({
       status: 200,
       data: [{
         token,
