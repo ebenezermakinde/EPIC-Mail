@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
   box-sizing: border-box;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.4;
 }
 
@@ -34,11 +34,11 @@ p {
 }
 
 .text-center {
-  text-align:center;
+  text-align: center;
 }
 
 .text-primary {
-  color: #93DCFF;
+  color: #93dcff;
 }
 
 .text-primary-blue {
@@ -56,7 +56,7 @@ p {
 }
 
 .bg-primary {
-  background: #93DCFF;;
+  background: #93dcff;
   color: #fff;
 }
 
@@ -80,14 +80,14 @@ p {
 .btn {
   display: inline-block;
   color: #fff;
-  background: #93DCFF;
+  background: #93dcff;
   padding: 0.5rem 2rem;
   border: none;
   border-radius: 5px;
 }
 
 .btn:hover {
-  background: #6CD4FF;
+  background: #6cd4ff;
   cursor: pointer;
 }
 
@@ -96,13 +96,25 @@ p {
   color: #fff;
 }
 
-.py-1 { padding: 1.5rem 0; }
-.py-2 { padding: 2rem 0; }
-.py-3 { padding: 3rem 0; }
+.py-1 {
+  padding: 1.5rem 0;
+}
+.py-2 {
+  padding: 2rem 0;
+}
+.py-3 {
+  padding: 3rem 0;
+}
 
-.p-1 { padding: 1.5rem; }
-.p-2 { padding: 2rem; }
-.p-3 { padding: 3rem; }
+.p-1 {
+  padding: 1.5rem;
+}
+.p-2 {
+  padding: 2rem;
+}
+.p-3 {
+  padding: 3rem;
+}
 
 .m-bottom-1 {
   margin-bottom: 1rem;
@@ -111,6 +123,8 @@ p {
 .m-top-1 {
   margin-top: 1rem;
 }
+
+
 .image-logo {
   width: 2rem;
   height: 2rem;
@@ -135,7 +149,7 @@ p {
 }
 
 .draft-alert {
-  color: red; 
+  color: red;
 }
 
 .line-height {
@@ -143,26 +157,34 @@ p {
 }
 
 .email-labels {
-  background: #ddd; 
-  padding: 0.5rem; 
+  background: #ddd;
+  padding: 0.5rem;
   border-radius: 2rem;
 }
 
 .group-widget {
-  background: #ddd; 
-  padding: 0.2rem 0.05rem; 
+  background: #ddd;
+  padding: 0.2rem 0.05rem;
 }
 
-.group-members-widget {
-  background: #ddd; 
-  padding: 0.2rem 0.05rem; 
+.group-members-widget ul {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: justify;
+  background: #ddd;
+  padding: 0.2rem 0.05rem;
+}
+
+.text-area-group {
+  display: flex;
+  max-width: 10rem;
 }
 
 /* Navbar */
 #navbar {
   display: flex;
   position: sticky;
-  top:0;
+  top: 0;
   background: #333;
   color: #fff;
   justify-content: space-between;
@@ -171,7 +193,7 @@ p {
 }
 
 #navbar span {
-  color: #93DCFF;
+  color: #93dcff;
 }
 
 #navbar a {
@@ -191,13 +213,14 @@ p {
 }
 
 #navbar ul li a:hover {
-  background: #6CD4FF;
+  background: #6cd4ff;
   border-radius: 5px;
 }
 
 /* Showcase */
 #showcase {
-  background: #333 url('../images/email-showcase.png') no-repeat right center/cover;
+  background: #333 url("../images/email-showcase.png") no-repeat right
+    center/cover;
   height: 100vh;
   color: #fff;
 }
@@ -213,10 +236,10 @@ p {
   /* Overlay */
   position: absolute;
   top: 65px;
-  left:0;
+  left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Section: How it works */
@@ -232,7 +255,7 @@ p {
 }
 
 #how .items .item i {
-  background: #93DCFF;
+  background: #93dcff;
   padding: 1rem;
   border-radius: 50%;
   margin-bottom: 1rem;
@@ -246,8 +269,7 @@ p {
 
 /* Body: forms showcase */
 #form-showcase {
-  background: url('../images/email-showcase.png') no-repeat right
-  center/cover;
+  background: url("../images/email-showcase.png") no-repeat right center/cover;
   height: 100vh;
   overflow: hidden;
 }
@@ -256,7 +278,7 @@ p {
 #login {
   margin: 10rem auto;
   max-width: 30rem;
-  padding: 1.25rem; 
+  padding: 1.25rem;
 }
 
 #login h1 a,
@@ -287,7 +309,7 @@ p {
 }
 
 #login .form-wrap .form-group input:focus {
-  border: 2px solid #6CD4FF;
+  border: 2px solid #6cd4ff;
 }
 
 #login .form-wrap button,
@@ -301,7 +323,7 @@ p {
 #sign-up {
   margin: 9rem auto;
   max-width: 40rem;
-  padding: 1.0rem; 
+  padding: 1rem;
 }
 
 .sign-up-item {
@@ -323,7 +345,6 @@ p {
   margin-top: 0.98rem;
 }
 
-
 #sign-up .form-wrap .form-group input {
   width: 95%;
   padding: 0.625rem;
@@ -335,7 +356,7 @@ p {
 #navbar-user {
   display: flex;
   position: sticky;
-  top:0;
+  top: 0;
   background: #333;
   color: #fff;
   justify-content: space-between;
@@ -344,7 +365,7 @@ p {
 }
 
 #navbar-user span {
-  color: #93DCFF;
+  color: #93dcff;
 }
 
 #navbar-user a {
@@ -357,19 +378,19 @@ p {
   list-style: none;
 }
 
-#navbar-user ul li sup{
+#navbar-user ul li sup {
   margin: 0 -0.3rem;
 }
 
 #navbar-user ul li a,
-#navbar-user ul li  {
+#navbar-user ul li {
   color: #fff;
   margin: 0 0.3rem;
 }
 
 .mailbox {
   display: flex;
-  max-height: 50rem;
+  max-height: 52rem;
   justify-content: space-between;
 }
 
@@ -400,7 +421,7 @@ p {
 
 .aside ul li a:hover,
 .aside ul li a:focus {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
   padding: 0.75rem 0.4rem;
   border-radius: 5px;
@@ -414,7 +435,7 @@ p {
   flex: 10;
   background: #fff;
   border-left: 1px solid #fff;
-  margin: 2rem 0 2rem;
+  margin: 2rem 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -427,6 +448,10 @@ p {
 .box #view-message,
 .box #view-message h3 {
   font-size: 0.9rem;
+}
+
+.box #view-message {
+  padding-left:2.5rem;
 }
 
 /* Table Styling */
@@ -453,34 +478,54 @@ p {
 }
 
 /* Div: Compose message */
- #compose-box {
-   margin-right: 10%;
- }
-
- #compose-box .form-wrap #compose-btn {
-  display: flex;
-  justify-content: center;
- }
-
- #compose-box .form-wrap #compose-btn button {
-   max-width: 20%;
-   margin: 0.5rem 0.2rem;
- }
-
- #compose-box .form-wrap .form-group label[for="message-body"],
- #compose-box .form-wrap .form-group label[for="to"] {
-   display: none;
- }
-
-#compose-box .form-wrap textarea {
-  border: none;
+#compose-box, 
+#compose-draft {
+  margin-right: 10%;
 }
 
-#compose-box .form-wrap .form-group input {
+#compose-box .form-wrap #compose-btn,
+#compose-draft .form-wrap #compose-btn {
+  display: flex;
+  justify-content: center;
+}
+
+#compose-box .form-wrap #compose-btn button,
+#compose-draft .form-wrap #compose-btn button {
+  max-width: 20%;
+  margin: 0.5rem 0.2rem;
+}
+
+#compose-box .form-wrap .form-group label[for="message-body"],
+#compose-box .form-wrap .form-group label[for="recipient"],
+#compose-draft .form-wrap .form-group label[for="message-body"],
+#compose-draft .form-wrap .form-group label[for="recipient"] {
+  display: none;
+}
+
+#compose-box .form-wrap textarea,
+#compose-draft .form-wrap textarea {
+  outline: none;
+}
+
+#compose-box .form-wrap .form-group input,
+#compose-draft .form-wrap .form-group input {
   padding: 1rem;
   width: 100%;
   border: none;
   border-bottom: 1px solid #333;
+}
+
+.text-area {
+  display: flex;
+  max-width: 100%;
+}
+
+textarea {
+  width: 90%;
+  margin: 0 auto;
+  height: 20rem;
+  border: none;
+  font-family: "Roboto", sans-serif;
 }
 
 /* DIV: Message Thread */
@@ -489,9 +534,14 @@ p {
 }
 
 /* Div: Create group */
+.create-grp {
+  height: 45rem;
+  overflow-y: hidden;
+}
+
 .create-grp .form-div {
- max-width: 50rem;
- margin: 0 auto;
+  max-width: 50rem;
+  margin: 0 auto;
 }
 
 .form-div .form-group > input[type="text"],
@@ -499,23 +549,22 @@ p {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.65rem 0;
-  font-family:'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #333;
   font-size: 1rem;
   border: 0.09rem solid #333;
+  outline: none;
 }
 
 .form-div .form-group > input[type="text"]:focus,
 .form-div .form-group select:focus {
-  border: 0.01rem solid #6CD4FF;
+  border: 0.01rem solid #6cd4ff;
 }
-
-
 
 .create-grp .group-list {
   display: flex;
   max-width: 43rem;
-  margin: 1.75rem auto;
+  margin: 2.5rem auto;
 }
 
 .create-grp .group-list ul {
@@ -531,7 +580,6 @@ p {
   color: #333;
 }
 
-
 .create-grp .group-list .list:first-child {
   flex: 5;
   border-right: 2px solid #333;
@@ -544,6 +592,7 @@ p {
 /* Footer: Remains at the bottom */
 #main-footer {
   position: fixed;
+  font-size: 0.8rem;
   bottom: 0;
   width: 100%;
 }
