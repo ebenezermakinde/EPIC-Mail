@@ -137,7 +137,7 @@ p {
 }
 
 .unread-inbox {
-  font-weight: bolder;
+  font: bold 0.95rem/1 sans-serif;
 }
 
 .inbox-alert {
@@ -392,10 +392,15 @@ p {
   display: flex;
   max-height: 52rem;
   justify-content: space-between;
+  overflow-y: scroll;
 }
 
 .box {
   flex: 2;
+}
+
+.box aside {
+  margin-top: 2rem;
 }
 
 .box .aside ul {
@@ -411,24 +416,40 @@ p {
   color: #333;
 }
 
-.aside ul li a span {
+.aside ul li a > span {
   font-size: 0.9rem;
-}
-
-.aside ul li sup {
   display: none;
 }
 
-.aside ul li a:hover,
-.aside ul li a:focus {
+/* .aside ul li span {
+  display: inline;
+  border: 1px solid black;
+} */
+
+.aside ul li a p {
+  display: flex;
+  max-width: 10rem;
+  justify-content: space-between;
+}
+
+.aside ul li a p > span {
+  font-size: 0.7rem;
+  border: 1px solid #ddd;
+  background: #ddd;
+  color: red;
+  padding: 0.25rem;
+  border-radius: 50%;
+}
+
+.aside ul li a p:hover {
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  padding: 0.75rem 0.4rem;
+  padding: 0.5rem 0;
   border-radius: 5px;
 }
 
 .box:first-child {
-  max-width: 15rem;
+  flex: 1;
 }
 
 .box:last-child {

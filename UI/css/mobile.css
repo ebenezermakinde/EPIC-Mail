@@ -71,20 +71,13 @@
 }
 
 /* Mailbox: Aside styling */
-.aside ul li span:nth-child(2) {
+.aside ul li a p {
   display: none;
 }
 
-.aside ul li sup {
+.aside ul li a > span {
+  font-size: 0.9rem;
   display: inline;
-}
-
-.aside ul li a:hover,
-.aside ul li a:focus {
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  padding: 0.5rem 0.4rem;
-  border-radius: 2rem;
 }
 
 /* Smartphone */
@@ -132,19 +125,12 @@
     padding: 0;
   }
 
-  .aside ul li a:hover,
-  .aside ul li a:focus {
+  .aside ul li a > span:hover {
     background: rgba(0, 0, 0, 0.4);
     color: #fff;
-    padding: 0.2rem 0.3rem;
-    border-radius: 2rem;
   }
 
   /* Mailbox section */
-  .mailbox {
-    margin-top: 0.3rem;
-  }
-
   .mailbox #view-message h3 {
     font-size: 1rem;
   }
