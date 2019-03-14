@@ -10,10 +10,9 @@ class UserController {
       email: req.body.email,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      othername: req.body.othername,
       password: req.body.password,
     };
-    const token = generateToken(newUser);
+    const token = generateToken(newUser.id);
     users.push(newUser);
     return res.status(201).json({
       status: 201,
@@ -25,7 +24,7 @@ class UserController {
 
   static login(req, res) {
     const { foundUser } = req.body;
-    const token = generateToken(foundUser);
+    const token = generateToken(foundUser.id);
     return res.status(200).json({
       status: 200,
       data: [{

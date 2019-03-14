@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 
 class Helper {
-  static generateToken(user) {
+  static generateToken(id) {
     const token = jwt.sign({
-      user,
+      id,
     },
     process.env.SECRET, { expiresIn: '7d' });
     return token;
