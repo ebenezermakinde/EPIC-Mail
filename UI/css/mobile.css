@@ -71,6 +71,10 @@
 }
 
 /* Mailbox: Aside styling */
+.mailbox {
+  max-height: 43rem;
+}
+
 .aside ul li a p {
   display: none;
 }
@@ -78,6 +82,10 @@
 .aside ul li a > span {
   font-size: 0.9rem;
   display: inline;
+}
+
+.box {
+  padding: 5px;
 }
 
 /* Smartphone */
@@ -131,19 +139,23 @@
   }
 
   /* Mailbox section */
+  .mailbox {
+    max-height: 33rem;
+  }
+
+
   .mailbox #view-message h3 {
     font-size: 1rem;
+  }
+
+  .box:last-child {
+    margin: 2rem 1rem;
   }
 
   /* Compose Message */
   #compose-box .form-wrap #compose-btn button {
     font-size: 0.4rem;
     padding: 0.5rem 0.5rem;
-  }
-
-  /* Create Group */
-  .box {
-    margin-top: 3rem;
   }
 
   .create-grp {
@@ -174,5 +186,9 @@
 
   .lead {
     font-size: 1rem;
+  }
+
+  .mailbox {
+    max-height: 29rem;
   }
 }
