@@ -124,7 +124,6 @@ p {
   margin-top: 1rem;
 }
 
-
 .image-logo {
   width: 2rem;
   height: 2rem;
@@ -390,17 +389,13 @@ p {
 
 .mailbox {
   display: flex;
-  max-height: 52rem;
+  max-height: 45rem;
   justify-content: space-between;
-  overflow-y: scroll;
 }
 
 .box {
   flex: 2;
-}
-
-.box aside {
-  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .box .aside ul {
@@ -421,11 +416,6 @@ p {
   display: none;
 }
 
-/* .aside ul li span {
-  display: inline;
-  border: 1px solid black;
-} */
-
 .aside ul li a p {
   display: flex;
   max-width: 10rem;
@@ -444,8 +434,7 @@ p {
 .aside ul li a p:hover {
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  padding: 0.5rem 0;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .box:first-child {
@@ -472,7 +461,7 @@ p {
 }
 
 .box #view-message {
-  padding-left:2.5rem;
+  padding-left: 2.5rem;
 }
 
 /* Table Styling */
@@ -499,7 +488,7 @@ p {
 }
 
 /* Div: Compose message */
-#compose-box, 
+#compose-box,
 #compose-draft {
   margin-right: 10%;
 }
