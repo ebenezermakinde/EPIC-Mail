@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.com/ebenezermakinde/EPIC-Mail.svg?branch=develop)](https://travis-ci.com/ebenezermakinde/EPIC-Mail)
 [![Maintainability](https://api.codeclimate.com/v1/badges/aa33b93685257e38c4c0/maintainability)](https://codeclimate.com/github/ebenezermakinde/EPIC-Mail/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/ebenezermakinde/EPIC-Mail/badge.svg?branch=develop)](https://coveralls.io/github/ebenezermakinde/EPIC-Mail?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Project Overview
 The internet is increasingly becoming an integral part of lives. Ever since the invention of electronic mail by Ray Tomlinson , emails have grown to become the primary medium of exchanging information over the internet between two or more people, until the advent of Instant Messaging (IM) Apps.
@@ -32,18 +33,21 @@ Project is currently being managed with Pivotal Tracker, a project management to
 
 ### API Endpoints.
 ##### Base URL 
-[Heroku](https://epic-mail-myapp.herokuapp.com/)
+The project base url can be visited on clicking the link [Heroku](https://epic-mail-myapp.herokuapp.com/)
 
-S/N | Verb   | Endpoint         | Description             |
----:| -------|------------------|-------------------------|
-  1 | Post   | /auth/signup     | Create a user account   |
-  2 | Post   | /auth/login      | Sign in a user          |
-  3 | Get    | /messages        | Get all received emails |
-  4 | Get    | /messages/unread | Get all unread emails   |
-  5 | Get    | /messages/sent   | Get all emails sent     |
-  6 | Get    | /messages/id     | Get a specific email    |
-  7 | Post   | /messages        | Send email to users     |
-  8 | Delete | /messages/id     | Delete an email         |
+S/N | Verb   | Endpoint                 | Description             |
+---:| -------|--------------------------|-------------------------|
+  1 | Post   | /api/v1/auth/signup      | Create a user account   |
+  2 | Post   | /api/v1/auth/login       | Sign in a user          |
+  3 | Get    | /api/v1/messages         | Get all received emails |
+  4 | Get    | /api/v1/messages/unread  | Get all unread emails   |
+  5 | Get    | /api/v1/messages/sent    | Get all emails sent     |
+  6 | Get    | /api/v1/messages/id      | Get a specific email    |
+  7 | Post   | /api/v1/messages         | Send email to users     |
+  8 | Delete | /api/v1/messages/id      | Delete an email         |
+
+### API Documentation :file_folder: :point_left:
+The API documentation page can be found here [EPIC-M@il](https://myepicmail.docs.apiary.io/)
 
 
 ### Author
