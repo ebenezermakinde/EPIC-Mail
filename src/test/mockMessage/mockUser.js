@@ -2,8 +2,8 @@ export const goodSignUpDetail = [
   // Good credentials
   {
     email: 'johndoe@mail.com',
-    firstname: 'John',
-    lastname: 'obey',
+    firstname: 'Johoon',
+    lastname: 'obeooy',
     password: 'obey123456',
   },
 ];
@@ -81,16 +81,23 @@ export const badSignUpDetail = [
   },
 ];
 
+export const goodLoginDetails = [
+  {
+    email: 'johndoe@mail.com',
+    password: 'obey123456',
+  },
+];
+
 export const badLoginDetails = [
   // User not signed up
   {
     email: 'obeyboyobey@yahoo.co.uk',
     password: 'obey123456f',
   },
-  // Signed up user providing empty email
+  // User empty email.
   {
     email: '',
-    password: 'obey123456',
+    password: 'obey123456f',
   },
   // Signed up user providing empty password
   {

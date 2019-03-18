@@ -1,14 +1,18 @@
-import users from '../utils/dummyUser';
+import { queryUsersByEmail } from '../config/sql';
+import db from '../config';
 
+/**
+ * User validator class.
+ */
 class UserValidator {
-  static signUpValidator(req, res, next) {
-    /* eslint-disable prefer-const */
-    let {
-      firstname,
-      lastname,
-      email,
-      password,
-    } = req.body;
+  /**
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @param {function} next - Calls the next function
+   * @returns {object} JSON representing the failure message
+   */
+  static async signUpValidator(req, res, next) {
+    let { firstname, lastname, email, password } = req.body;
     if (!firstname) {
       return res.status(400).json({
         status: 400,
@@ -44,8 +48,7 @@ class UserValidator {
     }
 
     email = email.toLowerCase().trim();
-    /* eslint-disable no-useless-escape */
-    const emailVerifier = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    const emailVerifier = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/;
     if (!emailVerifier.test(email)) {
       return res.status(400).json({
         status: 400,
@@ -58,14 +61,20 @@ class UserValidator {
         error: 'Email is too short',
       });
     }
-    const duplicateEmail = users.find(user => user.email === email);
-    if (duplicateEmail) {
-      return res.status(409).json({
-        status: 409,
-        error: 'Email already exists',
+    try {
+      const { rows } = await db.query(queryUsersByEmail, [email]);
+      if (rows[0]) {
+        return res.status(409).json({
+          status: 409,
+          error: 'Email already exists',
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
       });
     }
-
     // Password Validations
     if (!password) {
       return res.status(400).json({
@@ -84,7 +93,14 @@ class UserValidator {
     return next();
   }
 
-  static loginValidator(req, res, next) {
+  /**
+   * login User to the application
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @param {function} next - Calls the next function/route handler
+   * @returns {object} JSON representing the failure message.
+   */
+  static async loginValidator(req, res, next) {
     let { email, password } = req.body;
     if (!email) {
       return res.status(400).json({
@@ -93,29 +109,23 @@ class UserValidator {
       });
     }
     email = email.toLowerCase().trim();
-    const foundUser = users.find(user => user.email === email);
-    if (!foundUser) {
-      return res.status(401).json({
-        status: 401,
-        error: 'Authentication failed',
-      });
-    }
-
-    if (!password) {
-      return res.status(400).json({
-        status: 400,
-        error: 'Password is required',
+    try {
+      const { rows } = await db.query(queryUsersByEmail, [email]);
+      if (!rows[0]) {
+        return res.status(401).json({
+          status: 401,
+          error: 'Authentication failed',
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
       });
     }
 
     password = password.trim();
-    if (foundUser && password !== foundUser.password) {
-      return res.status(401).json({
-        status: 401,
-        error: 'Incorrect login details',
-      });
-    }
-    req.body.foundUser = foundUser;
+    req.body.email = email;
     req.body.password = password;
     return next();
   }

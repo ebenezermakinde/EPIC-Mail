@@ -6,8 +6,16 @@ const email = [...receivedMessages, ...sentMessages];
 const messages = arrayFlatten(email);
 
 
+/**
+ * MessageController class
+ */
 class MessageController {
-  // Get all emails
+  /**
+   * Get all messages
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} all messages
+   */
   static getAllMessages(req, res) {
     return res.status(200).json({
       status: 200,
@@ -15,7 +23,12 @@ class MessageController {
     });
   }
 
-  // Get one email.
+  /**
+   * Get one message
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} only one message
+   */
   static getOneEmail(req, res) {
     const { foundEmail } = req.body;
     return res.status(200).json({
@@ -24,7 +37,12 @@ class MessageController {
     });
   }
 
-  // Get all sent emails
+  /**
+   * Get all sent messages
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} all sent messages
+   */
   static getSentEmail(req, res) {
     const sent = messages.filter(message => message.status === 'sent');
     if (sent.length === 0) {
@@ -39,7 +57,12 @@ class MessageController {
     });
   }
 
-  // Get all unread messages
+  /**
+   * Get all unread messages
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} all unread messages
+   */
   static getUnreadEmail(req, res) {
     const unread = messages.filter(message => message.status === 'unread');
     if (unread.length === 0) {
@@ -54,7 +77,12 @@ class MessageController {
     });
   }
 
-  // Send an email
+  /**
+   * Send an email
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} a created message
+   */
   static sendEmail(req, res) {
     const newMessage = {
       id: messages.length + 1,
@@ -73,7 +101,12 @@ class MessageController {
     });
   }
 
-  // Delete an email
+  /**
+   * Delete a message
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} a delete message
+   */
   static deleteEmail(req, res) {
     const { foundEmail } = req.body;
     const index = messages.indexOf(foundEmail);
