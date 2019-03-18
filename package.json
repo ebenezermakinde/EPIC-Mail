@@ -7,11 +7,12 @@
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "start:dev": "nodemon --exec babel-node src/server.js",
-    "test": "nyc --reporter=html --reporter=text mocha src/test/*.test.js --require @babel/register --exit",
+    "test": "npm run migrate && nyc --reporter=html --reporter=text mocha src/test/*.test.js --require @babel/register --exit",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "migrate": "babel-node -- ./src/migrations"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "nyc": "^13.3.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",

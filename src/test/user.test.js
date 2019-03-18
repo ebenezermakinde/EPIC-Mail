@@ -1,7 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import { goodSignUpDetail, badSignUpDetail, badLoginDetails } from './mockMessage/mockUser';
+import {
+  goodSignUpDetail, badSignUpDetail, goodLoginDetails, badLoginDetails,
+} from './mockMessage/mockUser';
 
 const { should, expect } = chai;
 should();
@@ -23,7 +25,6 @@ describe('User test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(201);
             expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0]).to.have.property('token');
             done();
           });
       });
@@ -206,7 +207,7 @@ describe('User test', () => {
         chai
           .request(app)
           .post('/api/v1/auth/login')
-          .send(goodSignUpDetail[0])
+          .send(goodLoginDetails[0])
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
@@ -214,7 +215,6 @@ describe('User test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(200);
             expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0]).to.have.property('token');
             done();
           });
       });
@@ -260,12 +260,12 @@ describe('User test', () => {
           .post('/api/v1/auth/login')
           .send(badLoginDetails[2])
           .end((err, res) => {
-            res.should.have.status(400);
+            res.should.have.status(401);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
             res.body.should.have.property('error');
-            expect(res.body.status).to.equal(400);
-            expect(res.body.error).to.equal('Password is required');
+            expect(res.body.status).to.equal(401);
+            expect(res.body.error).to.equal('Incorrect login details');
             done();
           });
       });
