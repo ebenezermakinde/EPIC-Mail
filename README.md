@@ -31,6 +31,13 @@ The UI templates can be found here [EPIC M@il](https://ebenezermakinde.github.io
 
 Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories on the [EPIC M@il Pivotal Tracker Board](https://www.pivotaltracker.com/n/projects/2314369)
 
+### Installation
+* filepath> git clone https://github.com/ebenezermakinde/EPIC-Mail.git
+* create database with postgres named `epic_db`
+* run `npm i`
+* run `npm run migrate`
+* run `npm start`
+
 ### API Endpoints.
 ##### Base URL 
 The project base url can be visited on clicking the link [Heroku](https://epic-mail-myapp.herokuapp.com/)
