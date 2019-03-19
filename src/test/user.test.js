@@ -25,6 +25,7 @@ describe('User test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(201);
             expect(res.body.data).to.be.a('array');
+            expect(res.body.data[0]).to.have.property('token');
             done();
           });
       });
@@ -215,6 +216,7 @@ describe('User test', () => {
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(200);
             expect(res.body.data).to.be.a('array');
+            expect(res.body.data[0]).to.have.property('token');
             done();
           });
       });

@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 connect = {
-  connectionString: process.env.DATABASE_URL || process.env.LOCALDB_URL,
+  connectionString: process.env.DATABASE_URL,
 };
 
 const pool = new Pool(connect);
