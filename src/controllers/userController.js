@@ -57,22 +57,20 @@ class UserController {
       const { rows } = await db.query(queryUsersByEmail, params);
       if (rows) {
         const comparePassword = compareSync(req.body.password, rows[0].password);
-        if (comparePassword) {
-          const authUser = rows[0];
-          const token = generateToken(authUser);
-          return res.status(200).json({
-            status: 200,
-            data: [{
-              token,
-            }],
-          });
-        }
         if (!comparePassword) {
           return res.status(401).json({
             status: 401,
             error: 'Incorrect login details',
           });
         }
+        const authUser = rows[0];
+        const token = generateToken(authUser);
+        return res.status(200).json({
+          status: 200,
+          data: [{
+            token,
+          }],
+        });
       }
     } catch (error) {
       res.status(500).json({
