@@ -9,6 +9,10 @@ CREATE TABLE contacts (
   createdon TIMESTAMP WITH TIME ZONE DEFAULT now()
 )`;
 
+/**
+ * Contact Table function
+ * @returns {object} either error or success.
+ */
 export default async function contactTable() {
   try {
     const create = await pool.query(createContactTable);

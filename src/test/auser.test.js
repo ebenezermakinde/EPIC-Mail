@@ -30,6 +30,42 @@ describe('User test', () => {
           });
       });
     });
+    describe('User with good details', () => {
+      it('should return status code 201 and create a new user', (done) => {
+        chai
+          .request(app)
+          .post('/api/v1/auth/signup')
+          .send(goodSignUpDetail[1])
+          .end((err, res) => {
+            res.should.have.status(201);
+            res.body.should.be.a('object');
+            res.body.should.have.property('status');
+            res.body.should.have.property('data');
+            expect(res.body.status).to.equal(201);
+            expect(res.body.data).to.be.a('array');
+            expect(res.body.data[0]).to.have.property('token');
+            done();
+          });
+      });
+    });
+    describe('User with good details', () => {
+      it('should return status code 201 and create a new user', (done) => {
+        chai
+          .request(app)
+          .post('/api/v1/auth/signup')
+          .send(goodSignUpDetail[2])
+          .end((err, res) => {
+            res.should.have.status(201);
+            res.body.should.be.a('object');
+            res.body.should.have.property('status');
+            res.body.should.have.property('data');
+            expect(res.body.status).to.equal(201);
+            expect(res.body.data).to.be.a('array');
+            expect(res.body.data[0]).to.have.property('token');
+            done();
+          });
+      });
+    });
     describe('User with empty email', () => {
       it('should return status code 400 and send error message', (done) => {
         chai
@@ -208,7 +244,7 @@ describe('User test', () => {
         chai
           .request(app)
           .post('/api/v1/auth/login')
-          .send(goodLoginDetails[0])
+          .send(goodSignUpDetail[0])
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');

@@ -6,6 +6,18 @@ export const goodSignUpDetail = [
     lastname: 'obeooy',
     password: 'obey123456',
   },
+  {
+    email: 'johndoe@mail1.com',
+    firstname: 'Johoon',
+    lastname: 'obeooy',
+    password: 'obey123456',
+  },
+  {
+    email: 'johndoe@mail2.com',
+    firstname: 'Johoon',
+    lastname: 'obeooy',
+    password: 'obey123456',
+  },
 ];
 
 export const badSignUpDetail = [

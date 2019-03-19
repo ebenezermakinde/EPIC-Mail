@@ -10,7 +10,10 @@ const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
     registeredon TIMESTAMP WITH TIME ZONE DEFAULT now()
   )`;
 
-
+/**
+ * User Table function
+ * @returns {object} either error or success.
+ */
 export default async function userTable() {
   try {
     const create = await pool.query(createUserTable);

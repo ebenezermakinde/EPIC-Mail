@@ -1,26 +1,65 @@
-import moment from 'moment';
+import db from '../config';
+import {
+  sendMessage, findUserByEmail, insertIntoSent, insertIntoInbox,
+} from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
 
 const email = [...receivedMessages, ...sentMessages];
 const messages = arrayFlatten(email);
 
-
 /**
  * MessageController class
  */
 class MessageController {
   /**
-   * Get all messages
+   * Get send a message
    * @param {object} req
    * @param {object} res
-   * @returns {object} all messages
+   * @returns {object} for success on sent
    */
-  static getAllMessages(req, res) {
-    return res.status(200).json({
-      status: 200,
-      data: receivedMessages,
-    });
+  static async sendEmail(req, res) {
+    const {
+      subject, message, status, email, parentmessageid,
+    } = req.body;
+
+    const { id } = req.authData.id;
+    try {
+      if (status === 'draft') {
+        const params = [subject, message, parentmessageid, id, status];
+        const { rows } = await db.query(sendMessage, params);
+        return res.status(201).json({
+          status: 201,
+          data: [rows[0]],
+        });
+      }
+      const receiver = await db.query(findUserByEmail, [email]);
+      if (!receiver.rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          error: 'User does not exist',
+        });
+      }
+      const values = [subject, message, parentmessageid, id, 'sent'];
+      const { rows } = await db.query(sendMessage, values);
+
+      // persisting into sent table
+      const sent = [rows[0].id, id];
+      await db.query(insertIntoSent, sent);
+
+      // persisting into inbox table
+      const inboxValues = [rows[0].id, receiver.rows[0].id];
+      await db.query(insertIntoInbox, inboxValues);
+      return res.status(201).json({
+        status: 201,
+        data: rows[0],
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
   }
 
   /**
@@ -34,6 +73,19 @@ class MessageController {
     return res.status(200).json({
       status: 200,
       data: [foundEmail],
+    });
+  }
+
+  /**
+   * Get one message
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} only one message
+   */
+  static getAllMessages(req, res) {
+    return res.status(200).json({
+      status: 200,
+      data: receivedMessages,
     });
   }
 
@@ -78,30 +130,6 @@ class MessageController {
   }
 
   /**
-   * Send an email
-   * @param {object} req
-   * @param {object} res
-   * @returns {object} a created message
-   */
-  static sendEmail(req, res) {
-    const newMessage = {
-      id: messages.length + 1,
-      createdOn: moment().format('MMMM Do YYYY, h:mm:ss a'),
-      subject: req.body.subject,
-      message: req.body.message,
-      senderId: 1,
-      receiverId: messages.length - 1,
-      parentMessageId: messages.length + 1,
-      status: 'sent',
-    };
-    messages.push(newMessage);
-    return res.status(201).json({
-      status: 201,
-      data: [newMessage],
-    });
-  }
-
-  /**
    * Delete a message
    * @param {object} req
    * @param {object} res
@@ -113,14 +141,20 @@ class MessageController {
     messages.splice(index, 1);
     return res.status(200).json({
       status: 200,
-      data: [{
-        message: 'Email has been successfully deleted',
-      }],
+      data: [
+        {
+          message: 'Email has been successfully deleted',
+        },
+      ],
     });
   }
 }
 
 export const {
-  getAllMessages, getSentEmail, getUnreadEmail, sendEmail,
-  deleteEmail, getOneEmail,
+  getAllMessages,
+  getSentEmail,
+  getUnreadEmail,
+  sendEmail,
+  deleteEmail,
+  getOneEmail,
 } = MessageController;
