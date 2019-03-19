@@ -5,6 +5,7 @@ import {
 } from '../controllers/messageController';
 import MessageValidator from '../middleware/messageValidator';
 import { findEmailById } from '../middleware/findEmailById';
+import { verifyToken } from '../helpers/helper';
 
 const messageRouter = express.Router();
 
@@ -13,7 +14,7 @@ const { emailValidator } = MessageValidator;
 
 // Message routes
 messageRouter.get('', getAllMessages);
-messageRouter.post('', emailValidator, sendEmail);
+messageRouter.post('', verifyToken, emailValidator, sendEmail);
 messageRouter.get('/sent', getSentEmail);
 messageRouter.get('/unread', getUnreadEmail);
 messageRouter.delete('/:messageId', findEmailById, deleteEmail);

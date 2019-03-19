@@ -4,11 +4,17 @@ const createInboxTable = `DROP TABLE IF EXISTS inbox CASCADE;
 CREATE TABLE inbox (
   id SERIAL PRIMARY KEY NOT NULL,
   messageid INTEGER NOT NULL,
+  receiverid INTEGER NOT NULL,
   FOREIGN KEY (messageid) REFERENCES messages (id) on DELETE CASCADE,
+  FOREIGN KEY (receiverid) REFERENCES users (id) on DELETE CASCADE,
   createdon TIMESTAMP WITH TIME ZONE DEFAULT now()
 )`;
 
 
+/**
+ * Inbox Table function
+ * @returns {object} either error or success.
+ */
 export default async function inboxTable() {
   try {
     const create = await pool.query(createInboxTable);
