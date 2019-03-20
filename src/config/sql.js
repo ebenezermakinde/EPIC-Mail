@@ -8,3 +8,6 @@ export const insertIntoInbox = 'INSERT INTO inbox (messageid, receiverid) VALUES
 export const allSentMessages = 'SELECT * FROM messages LEFT JOIN sent ON messages.id = sent.messageid WHERE sent.senderid = $1';
 export const allReceivedMessages = 'SELECT * FROM messages LEFT JOIN inbox ON messages.id = inbox.messageid WHERE inbox.receiverid = $1';
 export const unreadMessages = 'SELECT * FROM messages LEFT JOIN inbox ON messages.id = inbox.messageid WHERE (inbox.receiverid, messages.status) = ($1, $2)';
+export const queryString = 'SELECT *, inbox.receiverid, sent.senderid FROM messages LEFT JOIN inbox on inbox.messageid = messages.id LEFT JOIN sent on sent.messageid = messages.id WHERE messages.id = $1';
+export const updateStatus = 'UPDATE messages SET status = $1 WHERE id = $2 returning *';
+export const draftQuery = 'SELECT * FROM messages WHERE (initiator, status, id) = ($1, $2, $3)';
