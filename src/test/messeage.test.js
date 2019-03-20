@@ -131,6 +131,7 @@ describe('Emails test', () => {
         chai
           .request(app)
           .get('/api/v1/messages/sent')
+          .set('authorization', userToken)
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');

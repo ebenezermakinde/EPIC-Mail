@@ -15,7 +15,7 @@ const { emailValidator } = MessageValidator;
 // Message routes
 messageRouter.get('', verifyToken, getAllMessages);
 messageRouter.post('', verifyToken, emailValidator, sendEmail);
-messageRouter.get('/sent', getSentEmail);
+messageRouter.get('/sent', verifyToken, getSentEmail);
 messageRouter.get('/unread', verifyToken, getUnreadEmail);
 messageRouter.delete('/:messageId', findEmailById, deleteEmail);
 messageRouter.get('/:messageId', findEmailById, getOneEmail);
