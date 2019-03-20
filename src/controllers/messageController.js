@@ -6,6 +6,7 @@ import {
   insertIntoInbox,
   allReceivedMessages,
   unreadMessages,
+  allSentMessages,
 } from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
@@ -115,18 +116,26 @@ class MessageController {
    * @param {object} res
    * @returns {object} all sent messages
    */
-  static getSentEmail(req, res) {
-    const sent = messages.filter(message => message.status === 'sent');
-    if (sent.length === 0) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No sent items',
+  static async getSentEmail(req, res) {
+    const { id } = req.authData.id;
+    try {
+      const { rows, rowCount } = await db.query(allSentMessages, [id]);
+      if (rowCount === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'No sent messages',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message
       });
     }
-    return res.status(200).json({
-      status: 200,
-      data: sent,
-    });
   }
 
   /**
