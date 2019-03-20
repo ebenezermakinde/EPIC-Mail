@@ -7,12 +7,15 @@ import {
   allReceivedMessages,
   unreadMessages,
   allSentMessages,
+  updateStatus,
+  draftQuery,
+  queryString,
 } from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
 
-const email = [...receivedMessages, ...sentMessages];
-const messages = arrayFlatten(email);
+const email1 = [...receivedMessages, ...sentMessages];
+const messages = arrayFlatten(email1);
 
 /**
  * MessageController class
@@ -74,12 +77,41 @@ class MessageController {
    * @param {object} res
    * @returns {object} only one message
    */
-  static getOneEmail(req, res) {
-    const { foundEmail } = req.body;
-    return res.status(200).json({
-      status: 200,
-      data: [foundEmail],
-    });
+  static async getOneEmail(req, res) {
+    const params = Number(req.params.messageId);
+    const { id } = req.authData.id;
+    try {
+      const draftMessage = await db.query(draftQuery, [id, 'draft', params]);
+      if (draftMessage.rowCount !== 0) {
+        return res.status(200).json({
+          status: 200,
+          data: draftMessage.rows[0],
+        });
+      }
+      const { rows } = await db.query(queryString, [params]);
+      if (rows[0].senderid === id) {
+        return res.status(200).json({
+          status: 200,
+          data: rows,
+        });
+      }
+      if (rows[0].receiverid === id) {
+        const updateMessage = await db.query(updateStatus, ['read', rows[0].id]);
+        return res.status(200).json({
+          status: 200,
+          data: updateMessage.rows[0],
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'The message was not found',
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
   }
 
   /**
@@ -133,7 +165,7 @@ class MessageController {
     } catch (error) {
       res.status(500).json({
         status: 500,
-        error: error.message
+        error: error.message,
       });
     }
   }
