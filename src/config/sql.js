@@ -6,3 +6,4 @@ export const findUserByEmail = 'SELECT * FROM users WHERE email = $1';
 export const insertIntoSent = 'INSERT INTO sent (messageid, senderid) VALUES ($1, $2) returning *';
 export const insertIntoInbox = 'INSERT INTO inbox (messageid, receiverid) VALUES ($1, $2) returning *';
 export const allReceivedMessages = 'SELECT * FROM messages LEFT JOIN inbox ON messages.id = inbox.messageid WHERE inbox.receiverid = $1';
+export const unreadMessages = 'SELECT * FROM messages LEFT JOIN inbox ON messages.id = inbox.messageid WHERE (inbox.receiverid, messages.status) = ($1, $2)';

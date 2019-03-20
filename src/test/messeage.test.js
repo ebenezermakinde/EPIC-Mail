@@ -143,19 +143,19 @@ describe('Emails test', () => {
           });
       });
     });
-    describe('Get all unread emails', () => {
-      it('should return status code 200 and get all unread emails', (done) => {
+    describe('Get all unread with no unread present', () => {
+      it('should return status code 404 and send error message', (done) => {
         chai
           .request(app)
           .get('/api/v1/messages/unread')
+          .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0].status).to.equal('unread');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
+            expect(res.body.error).to.equal('No unread messages');
             done();
           });
       });

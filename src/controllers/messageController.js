@@ -1,6 +1,11 @@
 import db from '../config';
 import {
-  sendMessage, findUserByEmail, insertIntoSent, insertIntoInbox, allReceivedMessages
+  sendMessage,
+  findUserByEmail,
+  insertIntoSent,
+  insertIntoInbox,
+  allReceivedMessages,
+  unreadMessages,
 } from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
@@ -130,18 +135,26 @@ class MessageController {
    * @param {object} res
    * @returns {object} all unread messages
    */
-  static getUnreadEmail(req, res) {
-    const unread = messages.filter(message => message.status === 'unread');
-    if (unread.length === 0) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No unread emails',
+  static async getUnreadEmail(req, res) {
+    const { id } = req.authData.id;
+    try {
+      const { rows, rowCount } = await db.query(unreadMessages, [id, 'unread']);
+      if (rowCount === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'No unread messages',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
       });
     }
-    return res.status(200).json({
-      status: 200,
-      data: unread,
-    });
   }
 
   /**
