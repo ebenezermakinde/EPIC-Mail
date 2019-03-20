@@ -98,13 +98,14 @@ describe('Emails test', () => {
         chai
           .request(app)
           .get('/api/v1/messages')
+          .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
+            expect(res.body.error).to.equal('There are no received messages yet');
             done();
           });
       });

@@ -13,7 +13,7 @@ const messageRouter = express.Router();
 const { emailValidator } = MessageValidator;
 
 // Message routes
-messageRouter.get('', getAllMessages);
+messageRouter.get('', verifyToken, getAllMessages);
 messageRouter.post('', verifyToken, emailValidator, sendEmail);
 messageRouter.get('/sent', getSentEmail);
 messageRouter.get('/unread', getUnreadEmail);
