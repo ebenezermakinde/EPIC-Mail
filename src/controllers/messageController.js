@@ -1,6 +1,6 @@
 import db from '../config';
 import {
-  sendMessage, findUserByEmail, insertIntoSent, insertIntoInbox,
+  sendMessage, findUserByEmail, insertIntoSent, insertIntoInbox, allReceivedMessages
 } from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
@@ -82,11 +82,26 @@ class MessageController {
    * @param {object} res
    * @returns {object} only one message
    */
-  static getAllMessages(req, res) {
-    return res.status(200).json({
-      status: 200,
-      data: receivedMessages,
-    });
+  static async getAllMessages(req, res) {
+    const { id } = req.authData.id;
+    try {
+      const { rows, rowCount } = await db.query(allReceivedMessages, [id]);
+      if (rowCount === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'There are no received messages yet',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
   }
 
   /**
