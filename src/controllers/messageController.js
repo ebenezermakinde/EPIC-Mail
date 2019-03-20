@@ -89,22 +89,22 @@ class MessageController {
         });
       }
       const { rows } = await db.query(queryString, [params]);
+      if (rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'The message was not found',
+        });
+      }
       if (rows[0].senderid === id) {
         return res.status(200).json({
           status: 200,
           data: rows,
         });
       }
-      if (rows[0].receiverid === id) {
-        const updateMessage = await db.query(updateStatus, ['read', rows[0].id]);
-        return res.status(200).json({
-          status: 200,
-          data: updateMessage.rows[0],
-        });
-      }
-      return res.status(404).json({
-        status: 404,
-        error: 'The message was not found',
+      const updateMessage = await db.query(updateStatus, ['read', rows[0].id]);
+      return res.status(200).json({
+        status: 200,
+        data: updateMessage.rows[0],
       });
     } catch (error) {
       res.status(500).json({
