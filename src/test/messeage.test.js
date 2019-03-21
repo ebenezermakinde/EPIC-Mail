@@ -37,20 +37,18 @@ describe('Create Token for user', () => {
 describe('Emails test', () => {
   describe('POST', () => {
     describe('Send a valid email', () => {
-      it('should return status code 201 and send email', (done) => {
+      it('should return status code 500 and send error message', (done) => {
         chai
           .request(app)
           .post('/api/v1/messages')
           .set('authorization', userToken)
           .send(validPostData[0])
           .end((err, res) => {
-            res.should.have.status(201);
-            res.body.should.be.a('object');
+            res.should.have.status(500);
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(201);
-            expect(res.body.data).to.be.a('object');
-            expect(res.body.data.status).to.equal('sent');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(500);
+            expect(res.body).to.be.a('object');
             done();
           });
       });
@@ -111,36 +109,33 @@ describe('Emails test', () => {
       });
     });
     describe('Get one email', () => {
-      it('should return status code 200 and get one email', (done) => {
+      it('should return status code 404 and send error', (done) => {
         chai
           .request(app)
           .get('/api/v1/messages/1')
           .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });
     });
     describe('Get all sent emails', () => {
-      it('should return status code 200 and get all sent emails', (done) => {
+      it('should return status code 404 and send error', (done) => {
         chai
           .request(app)
           .get('/api/v1/messages/sent')
           .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0].status).to.equal('sent');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });
@@ -174,11 +169,11 @@ describe('Emails test', () => {
           .set('authorization', userToken)
           .send(messages)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });

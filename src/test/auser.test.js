@@ -134,23 +134,6 @@ describe('User test', () => {
           });
       });
     });
-    describe('User signing up with a short password', () => {
-      it('should return status code 400 and send an error message', (done) => {
-        chai
-          .request(app)
-          .post('/api/v1/auth/signup')
-          .send(badSignUpDetail[9])
-          .end((err, res) => {
-            res.should.have.status(400);
-            res.body.should.be.a('object');
-            res.body.should.have.property('status');
-            res.body.should.have.property('error');
-            expect(res.body.status).to.equal(400);
-            expect(res.body.error).to.equal('Password is too short');
-            done();
-          });
-      });
-    });
     describe('User with invalid firstname format', () => {
       it('should return status code 400 and send error message', (done) => {
         chai
@@ -198,23 +181,6 @@ describe('User test', () => {
             res.body.should.have.property('error');
             expect(res.body.status).to.equal(400);
             expect(res.body.error).to.equal('Email format is invalid');
-            done();
-          });
-      });
-    });
-    describe('User with short email address', () => {
-      it('should return status code 400 and send error message', (done) => {
-        chai
-          .request(app)
-          .post('/api/v1/auth/signup')
-          .send(badSignUpDetail[7])
-          .end((err, res) => {
-            res.should.have.status(400);
-            res.body.should.be.a('object');
-            res.body.should.have.property('status');
-            res.body.should.have.property('error');
-            expect(res.body.status).to.equal(400);
-            expect(res.body.error).to.equal('Email is too short');
             done();
           });
       });

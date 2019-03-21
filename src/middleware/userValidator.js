@@ -55,12 +55,6 @@ class UserValidator {
         error: 'Email format is invalid',
       });
     }
-    if (email.length < 10 || email.length > 30) {
-      return res.status(400).json({
-        status: 400,
-        error: 'Email is too short',
-      });
-    }
     try {
       const { rows } = await db.query(queryUsersByEmail, [email]);
       if (rows[0]) {
@@ -109,21 +103,6 @@ class UserValidator {
       });
     }
     email = email.toLowerCase().trim();
-    try {
-      const { rows } = await db.query(queryUsersByEmail, [email]);
-      if (!rows[0]) {
-        return res.status(401).json({
-          status: 401,
-          error: 'Authentication failed',
-        });
-      }
-    } catch (error) {
-      return res.status(500).json({
-        status: 500,
-        error: error.message,
-      });
-    }
-
     password = password.trim();
     req.body.email = email;
     req.body.password = password;
