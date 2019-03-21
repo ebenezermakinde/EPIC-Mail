@@ -44,7 +44,6 @@ class GroupController {
    */
   static async addAUserToGroup(req, res) {
     const { foundGroup, email } = req.body;
-    console.log(foundGroup);
     try {
       const foundUser = await db.query(queryUsersByEmail, [email]);
       if (!foundUser) {
