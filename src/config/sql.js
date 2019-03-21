@@ -1,3 +1,4 @@
+// Messages SQL Queries
 export const createUser = 'INSERT INTO users (firstname,lastname,email, password) VALUES ($1, $2, $3, $4) returning *';
 export const findUserById = 'SELECT * FROM users WHERE id = $1';
 export const queryUsersByEmail = 'SELECT * FROM users where email = $1';
@@ -14,3 +15,7 @@ export const draftQuery = 'SELECT * FROM messages WHERE (initiator, status, id) 
 export const deleteMessage = 'DELETE FROM messages WHERE (initiator, status, id) = ($1, $2, $3) returning *';
 export const deleteSent = 'DELETE FROM sent WHERE (senderid, messageid) = ($1, $2) returning *';
 export const deleteInbox = 'DELETE FROM inbox WHERE (receiverid, messageid) =($1, $2) returning *';
+
+// Group SQL Queries.
+export const createGroup = 'INSERT INTO groups (name, creator) VALUES ($1, $2) returning *';
+export const insertAdminToGroupmembersTable = 'INSERT INTO groupmembers (groupid, userid) VALUES ($1, $2) returning *';

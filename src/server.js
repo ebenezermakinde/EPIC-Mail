@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import userRouter from './routes/userRoutes';
 import messageRouter from './routes/messageRoutes';
 import defaultRouter from './routes/defaultRoute';
+import groupRouter from './routes/groupRoute';
 
 // Set up the express app.
 const app = express();
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Use our routes.
 app.use('/api/v1/', userRouter);
 app.use('/api/v1/messages', messageRouter);
+app.use('/api/v1/', groupRouter);
 app.use('/', defaultRouter);
 
 // Define our port number.
