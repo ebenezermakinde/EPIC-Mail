@@ -10,4 +10,7 @@ export const allReceivedMessages = 'SELECT * FROM messages LEFT JOIN inbox ON me
 export const unreadMessages = 'SELECT * FROM messages LEFT JOIN inbox ON messages.id = inbox.messageid WHERE (inbox.receiverid, messages.status) = ($1, $2)';
 export const queryString = 'SELECT *, inbox.receiverid, sent.senderid FROM messages LEFT JOIN inbox on inbox.messageid = messages.id LEFT JOIN sent on sent.messageid = messages.id WHERE messages.id = $1';
 export const updateStatus = 'UPDATE messages SET status = $1 WHERE id = $2 returning *';
-export const draftQuery = 'SELECT * FROM messages WHERE (initiator, status, id) = ($1, $2, $3)';
+export const draftQuery = 'SELECT * FROM messages WHERE (id) = ($1)';
+export const deleteMessage = 'DELETE FROM messages WHERE (initiator, status, id) = ($1, $2, $3) returning *';
+export const deleteSent = 'DELETE FROM sent WHERE (senderid, messageid) = ($1, $2) returning *';
+export const deleteInbox = 'DELETE FROM inbox WHERE (receiverid, messageid) =($1, $2) returning *';

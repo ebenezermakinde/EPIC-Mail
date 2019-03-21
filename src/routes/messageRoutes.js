@@ -17,7 +17,7 @@ messageRouter.get('', verifyToken, getAllMessages);
 messageRouter.post('', verifyToken, emailValidator, sendEmail);
 messageRouter.get('/sent', verifyToken, getSentEmail);
 messageRouter.get('/unread', verifyToken, getUnreadEmail);
-messageRouter.delete('/:messageId', findEmailById, deleteEmail);
+messageRouter.delete('/:messageId', verifyToken, findEmailById, deleteEmail);
 messageRouter.get('/:messageId', verifyToken, findEmailById, getOneEmail);
 
 export default messageRouter;
