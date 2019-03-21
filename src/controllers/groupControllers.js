@@ -1,5 +1,7 @@
 import db from '../config';
-import { createGroup, findUserById, insertAdminToGroupmembersTable } from '../config/sql';
+import {
+  createGroup, findUserById, insertAdminToGroupmembersTable, queryUsersByEmail, insertGroupMember,
+} from '../config/sql';
 
 /**
  * Group controller class.
@@ -7,9 +9,9 @@ import { createGroup, findUserById, insertAdminToGroupmembersTable } from '../co
 class GroupController {
   /**
    * Create group function
-   * @param {*} req object
-   * @param {*} res  object
-   * @returns {*} a new created group
+   * @param {object} req object
+   * @param {object} res  object
+   * @returns {object} a new created group
    */
   static async startGroup(req, res) {
     const { id } = req.authData.id;
@@ -19,7 +21,7 @@ class GroupController {
       const { name } = req.body;
       const params = [name, email];
       const result = await db.query(createGroup, params);
-      const inputs = [result.rows[0].id, id];
+      const inputs = [result.rows[0].id, id, 'admin'];
       await db.query(insertAdminToGroupmembersTable, inputs);
       const newGroup = result.rows[0];
       return res.status(201).json({
@@ -33,6 +35,36 @@ class GroupController {
       });
     }
   }
+
+  /**
+   * Add new members to a group
+   * @param {object} req object
+   * @param {object} res object
+   * @returns {object}  The new group as an object
+   */
+  static async addAUserToGroup(req, res) {
+    const { foundGroup, email } = req.body;
+    console.log(foundGroup);
+    try {
+      const foundUser = await db.query(queryUsersByEmail, [email]);
+      if (!foundUser) {
+        return res.status(404).json({
+          status: 404,
+          error: 'User does not exist',
+        });
+      }
+      const { rows } = await db.query(insertGroupMember, [foundGroup.groupid, foundUser.rows[0].id]);
+      return res.status(201).json({
+        status: 201,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
-export const { startGroup } = GroupController;
+export const { startGroup, addAUserToGroup } = GroupController;
