@@ -1,4 +1,14 @@
+/**
+ * Message validator class.
+ */
 class MessageValidator {
+  /**
+   * Function that helps with email validation
+   * @param {object} req The request object
+   * @param {object} res The request object
+   * @param {object} next The request object
+   * @returns {object} The error object
+   */
   static emailValidator(req, res, next) {
     let { subject, message } = req.body;
     // No blank subject allowed

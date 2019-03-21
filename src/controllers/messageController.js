@@ -14,11 +14,6 @@ import {
   deleteSent,
   deleteInbox,
 } from '../config/sql';
-import { receivedMessages, sentMessages } from '../utils/dummyMessages';
-import { arrayFlatten } from '../helpers/arrayFlatten';
-
-const email1 = [...receivedMessages, ...sentMessages];
-const messages = arrayFlatten(email1);
 
 /**
  * MessageController class
