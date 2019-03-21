@@ -171,6 +171,7 @@ describe('Emails test', () => {
         chai
           .request(app)
           .delete(`/api/v1/messages/${id}`)
+          .set('authorization', userToken)
           .send(messages)
           .end((err, res) => {
             res.should.have.status(200);
@@ -178,7 +179,6 @@ describe('Emails test', () => {
             res.body.should.have.property('status');
             res.body.should.have.property('data');
             expect(res.body.status).to.equal(200);
-            expect(res.body.data[0].message).to.equal('Email has been successfully deleted');
             done();
           });
       });
@@ -189,6 +189,7 @@ describe('Emails test', () => {
         chai
           .request(app)
           .delete(`/api/v1/messages/${id}`)
+          .set('authorization', userToken)
           .send(messages)
           .end((err, res) => {
             res.should.have.status(404);
@@ -196,7 +197,7 @@ describe('Emails test', () => {
             res.body.should.have.property('status');
             res.body.should.have.property('error');
             expect(res.body.status).to.equal(404);
-            expect(res.body.error).to.equal('Email was not found');
+            expect(res.body.error).to.equal('Message was not found');
             done();
           });
       });

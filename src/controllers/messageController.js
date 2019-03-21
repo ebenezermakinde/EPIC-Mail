@@ -209,7 +209,6 @@ class MessageController {
    */
   static async deleteEmail(req, res) {
     const params = Number(req.params.messageId);
-    console.log('req.params ====>', req.params);
     const { id } = req.authData.id;
 
     try {
@@ -217,7 +216,9 @@ class MessageController {
       if (deleteDraft.rows.length !== 0) {
         return res.status(200).json({
           status: 200,
-          data: 'Message was deleted',
+          data: [{
+            message: 'Message was deleted',
+          }],
         });
       }
       const { rows } = await db.query(deleteSent, [id, params]);
