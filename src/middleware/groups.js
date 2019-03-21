@@ -15,13 +15,10 @@ class GroupControls {
    * @returns {object} JSON representing the failure message.
    */
   static async findSpecificGroup(req, res, next) {
-    const { id } = req.authData.id;
-    console.log('id====>', id);
+    const { id } = req.authData;
     const gId = Number(req.params.groupId);
-    console.log('gId====>', gId);
     try {
       const { rows, rowCount } = await db.query(fetchSpecificGroupByUser, [id, gId]);
-      console.log('rowCount===>', rowCount);
       if (rowCount === 0) {
         return res.status(404).json({
           status: 404,

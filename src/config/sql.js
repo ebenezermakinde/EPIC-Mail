@@ -18,7 +18,7 @@ export const deleteInbox = 'DELETE FROM inbox WHERE (receiverid, messageid) =($1
 
 // Group SQL Queries.
 export const createGroup = 'INSERT INTO groups (name, creator) VALUES ($1, $2) returning *';
-export const insertAdminToGroupmembersTable = 'INSERT INTO groupmembers (groupid, userid, userrole) VALUES ($1, $2) returning *';
+export const insertAdminToGroupmembersTable = 'INSERT INTO groupmembers (groupid, userid, userrole) VALUES ($1, $2, $3) returning *';
 export const insertGroupMember = 'INSERT INTO groupmembers (groupid, userid) VALUES ($1, $2) returning *';
 export const fetchSpecificGroupByUser = 'SELECT groupid,name,role FROM groups INNER JOIN groupmembers on groupmembers.groupid = groups.id WHERE userid = $1 AND groupid = $2;';
 export const getGroupByName = 'SELECT * FROM groups WHERE name = $1';

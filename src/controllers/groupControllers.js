@@ -52,7 +52,8 @@ class GroupController {
           error: 'User does not exist',
         });
       }
-      const { rows } = await db.query(insertGroupMember, [foundGroup.groupid, foundUser.rows[0].id]);
+      const { rows } = await db.query(insertGroupMember,
+        [foundGroup.groupid, foundUser.rows[0].id]);
       return res.status(201).json({
         status: 201,
         data: rows,
