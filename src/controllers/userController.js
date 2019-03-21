@@ -27,7 +27,7 @@ class UserController {
     try {
       const { rows } = await db.query(createUser, params);
       if (rows) {
-        const authUser = rows[0];
+        const authUser = rows[0].id;
         const token = generateToken(authUser);
         return res.status(201).json({
           status: 201,
@@ -63,7 +63,7 @@ class UserController {
             error: 'Incorrect login details',
           });
         }
-        const authUser = rows[0];
+        const authUser = rows[0].id;
         const token = generateToken(authUser);
         return res.status(200).json({
           status: 200,

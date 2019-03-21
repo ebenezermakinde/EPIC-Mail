@@ -44,7 +44,6 @@ class GroupController {
    */
   static async addAUserToGroup(req, res) {
     const { foundGroup, email } = req.body;
-    console.log(foundGroup);
     try {
       const foundUser = await db.query(queryUsersByEmail, [email]);
       if (!foundUser) {
@@ -53,7 +52,8 @@ class GroupController {
           error: 'User does not exist',
         });
       }
-      const { rows } = await db.query(insertGroupMember, [foundGroup.groupid, foundUser.rows[0].id]);
+      const { rows } = await db.query(insertGroupMember,
+        [foundGroup.groupid, foundUser.rows[0].id]);
       return res.status(201).json({
         status: 201,
         data: rows,
