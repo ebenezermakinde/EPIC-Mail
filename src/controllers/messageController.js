@@ -10,6 +10,9 @@ import {
   updateStatus,
   draftQuery,
   queryString,
+  deleteMessage,
+  deleteSent,
+  deleteInbox,
 } from '../config/sql';
 import { receivedMessages, sentMessages } from '../utils/dummyMessages';
 import { arrayFlatten } from '../helpers/arrayFlatten';
@@ -204,18 +207,46 @@ class MessageController {
    * @param {object} res
    * @returns {object} a delete message
    */
-  static deleteEmail(req, res) {
-    const { foundEmail } = req.body;
-    const index = messages.indexOf(foundEmail);
-    messages.splice(index, 1);
-    return res.status(200).json({
-      status: 200,
-      data: [
-        {
-          message: 'Email has been successfully deleted',
-        },
-      ],
-    });
+  static async deleteEmail(req, res) {
+    const params = Number(req.params.messageId);
+    const { id } = req.authData.id;
+
+    try {
+      const deleteDraft = await db.query(deleteMessage, [id, 'draft', params]);
+      if (deleteDraft.rows.length !== 0) {
+        return res.status(200).json({
+          status: 200,
+          data: [{
+            message: 'Message was deleted',
+          }],
+        });
+      }
+      const { rows } = await db.query(deleteSent, [id, params]);
+      if (rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Message was not found',
+        });
+      }
+      if (rows[0].senderid === id) {
+        return res.status(200).json({
+          status: 200,
+          data: 'Message was deleted',
+        });
+      }
+      if (rows[0].receiverid === id) {
+        const inboxMessage = await db.query(deleteInbox, [id, params]);
+        return res.status(200).json({
+          status: 200,
+          data: `${inboxMessage} was deleted`,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
   }
 }
 
