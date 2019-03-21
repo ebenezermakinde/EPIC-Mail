@@ -44,13 +44,11 @@ describe('Emails test', () => {
           .set('authorization', userToken)
           .send(validPostData[0])
           .end((err, res) => {
-            res.should.have.status(201);
+            res.should.have.status(500);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(201);
-            expect(res.body.data).to.be.a('object');
-            expect(res.body.data.status).to.equal('sent');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(500);
             done();
           });
       });
@@ -117,12 +115,10 @@ describe('Emails test', () => {
           .get('/api/v1/messages/1')
           .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });
@@ -134,13 +130,11 @@ describe('Emails test', () => {
           .get('/api/v1/messages/sent')
           .set('authorization', userToken)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
-            expect(res.body.data).to.be.a('array');
-            expect(res.body.data[0].status).to.equal('sent');
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });
@@ -174,11 +168,11 @@ describe('Emails test', () => {
           .set('authorization', userToken)
           .send(messages)
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('status');
-            res.body.should.have.property('data');
-            expect(res.body.status).to.equal(200);
+            res.body.should.have.property('error');
+            expect(res.body.status).to.equal(404);
             done();
           });
       });
