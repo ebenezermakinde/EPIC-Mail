@@ -22,3 +22,4 @@ export const insertAdminToGroupmembersTable = 'INSERT INTO groupmembers (groupid
 export const insertGroupMember = 'INSERT INTO groupmembers (groupid, userid) VALUES ($1, $2) returning *';
 export const fetchSpecificGroupByUser = 'SELECT groupid,name,role FROM groups INNER JOIN groupmembers on groupmembers.groupid = groups.id WHERE userid = $1 AND groupid = $2;';
 export const getGroupByName = 'SELECT * FROM groups WHERE name = $1';
+export const removeGroupMembers = 'DELETE FROM groupmembers WHERE (groupid, userid) = ($1, $2) returning *';
