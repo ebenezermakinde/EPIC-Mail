@@ -25,3 +25,4 @@ export const fetchAllGroupsByUser = 'SELECT groupid,name,role FROM groups INNER 
 export const getGroupByName = 'SELECT * FROM groups WHERE name = $1';
 export const removeGroupMembers = 'DELETE FROM groupmembers WHERE (groupid, userid) = ($1, $2) returning *';
 export const patchGroupName = ' UPDATE groups SET name = $1 WHERE id = $2 returning * ';
+export const deleteGroup = 'DELETE FROM groups WHERE id = $1';
