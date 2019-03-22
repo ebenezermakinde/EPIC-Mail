@@ -6,6 +6,7 @@ import {
   queryUsersByEmail,
   insertGroupMember,
   removeGroupMembers,
+  fetchAllGroupsByUser,
 } from '../config/sql';
 
 /**
@@ -19,7 +20,7 @@ class GroupController {
    * @returns {object} a new created group
    */
   static async startGroup(req, res) {
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
       const { rows } = await db.query(findUserById, [id]);
       const { email } = rows[0];
@@ -80,9 +81,7 @@ class GroupController {
    */
   static async deleteUserFromGroup(req, res) {
     const { foundGroup } = req.body;
-    console.log('foundGroup', foundGroup);
     const member = Number(req.params.userId);
-    console.log('member', member);
     try {
       const removeMember = await db.query(removeGroupMembers, [foundGroup.groupid, member]);
       if (!removeMember) {
@@ -102,6 +101,39 @@ class GroupController {
       });
     }
   }
+
+  /**
+   * Get a groups a user owns
+   * @param {object} req object
+   * @param {object} res object
+   * @returns {object} object of the users group
+   */
+  static async getAllGroupsByUser(req, res) {
+    const { id } = req.authData;
+    try {
+      const { rows, rowCount } = await db.query(fetchAllGroupsByUser, [id]);
+      if (rowCount === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'No groups created yet',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
-export const { startGroup, addAUserToGroup, deleteUserFromGroup } = GroupController;
+export const {
+  startGroup,
+  addAUserToGroup,
+  deleteUserFromGroup,
+  getAllGroupsByUser,
+} = GroupController;
