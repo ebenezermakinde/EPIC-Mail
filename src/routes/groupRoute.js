@@ -1,6 +1,9 @@
 import express from 'express';
 import {
-  startGroup, addAUserToGroup, deleteUserFromGroup, getAllGroupsByUser, editGroupByName, deleteSpecificGroup,
+  startGroup,
+  addAUserToGroup,
+  deleteUserFromGroup,
+  getAllGroupsByUser, editGroupByName, deleteSpecificGroup,
 } from '../controllers/groupControllers';
 import { verifyToken } from '../helpers/helper';
 import GroupControls from '../middleware/groupsFinder';

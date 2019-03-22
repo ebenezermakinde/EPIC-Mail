@@ -1,13 +1,13 @@
 import db from '../config';
 import {
   sendMessage,
-  findUserByEmail,
   insertIntoSent,
   insertIntoInbox,
   allReceivedMessages,
   unreadMessages,
   allSentMessages,
   updateStatus,
+  queryUsersByEmail,
   draftQuery,
   queryString,
   deleteMessage,
@@ -27,39 +27,27 @@ class MessageController {
    */
   static async sendEmail(req, res) {
     const {
-      subject, message, status, email, parentmessageid,
+      subject, message, email,
     } = req.body;
 
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
-      if (status === 'draft') {
-        const params = [subject, message, parentmessageid, id, status];
-        const { rows } = await db.query(sendMessage, params);
-        return res.status(201).json({
-          status: 201,
-          data: [rows[0]],
-        });
-      }
-      const receiver = await db.query(findUserByEmail, [email]);
-      if (!receiver.rows[0]) {
+      const result = await db.query(queryUsersByEmail, [email]);
+      if (result.rowCount === 0) {
         return res.status(404).json({
           status: 404,
-          error: 'User does not exist',
+          error: 'This user cannot be found',
         });
       }
-      const values = [subject, message, parentmessageid, id, 'sent'];
-      const { rows } = await db.query(sendMessage, values);
+      const insertSent = await db.query(sendMessage, [subject, message, null, id, 'sent']);
+      // Save message as sent in sent table.
+      await db.query(insertIntoSent, [insertSent.rows[0].id, id]);
 
-      // persisting into sent table
-      const sent = [rows[0].id, id];
-      await db.query(insertIntoSent, sent);
-
-      // persisting into inbox table
-      const inboxValues = [rows[0].id, receiver.rows[0].id];
-      await db.query(insertIntoInbox, inboxValues);
+      // Save to received messages(inbox)
+      await db.query(insertIntoInbox, [insertSent.rows[0].id, result.rows[0].id]);
       return res.status(201).json({
         status: 201,
-        data: rows[0],
+        data: insertSent.rows[0],
       });
     } catch (error) {
       res.status(500).json({
@@ -77,7 +65,7 @@ class MessageController {
    */
   static async getOneEmail(req, res) {
     const params = Number(req.params.messageId);
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
       const draftMessage = await db.query(draftQuery, [id, 'draft', params]);
       if (draftMessage.rowCount !== 0) {
@@ -119,7 +107,7 @@ class MessageController {
    * @returns {object} only one message
    */
   static async getAllMessages(req, res) {
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
       const { rows, rowCount } = await db.query(allReceivedMessages, [id]);
       if (rowCount === 0) {
@@ -147,7 +135,7 @@ class MessageController {
    * @returns {object} all sent messages
    */
   static async getSentEmail(req, res) {
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
       const { rows, rowCount } = await db.query(allSentMessages, [id]);
       if (rowCount === 0) {
@@ -175,7 +163,7 @@ class MessageController {
    * @returns {object} all unread messages
    */
   static async getUnreadEmail(req, res) {
-    const { id } = req.authData.id;
+    const { id } = req.authData;
     try {
       const { rows, rowCount } = await db.query(unreadMessages, [id, 'unread']);
       if (rowCount === 0) {
@@ -204,7 +192,7 @@ class MessageController {
    */
   static async deleteEmail(req, res) {
     const params = Number(req.params.messageId);
-    const { id } = req.authData.id;
+    const { id } = req.authData;
 
     try {
       const deleteDraft = await db.query(deleteMessage, [id, 'draft', params]);
