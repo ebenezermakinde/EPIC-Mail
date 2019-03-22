@@ -7,6 +7,7 @@ import {
   insertGroupMember,
   removeGroupMembers,
   fetchAllGroupsByUser,
+  patchGroupName,
 } from '../config/sql';
 
 /**
@@ -129,6 +130,34 @@ class GroupController {
       });
     }
   }
+
+  /**
+   * Edit name of a groups user owns
+   * @param {object} req object
+   * @param {object} res object
+   * @returns {object} object of the edited group with new name
+   */
+  static async editGroupByName(req, res) {
+    const { foundGroup } = req.body;
+    try {
+      const { rows } = await db.query(patchGroupName, [req.body.name, foundGroup.groupid]);
+      const patchedGroup = rows[0];
+      const { id, name, role } = patchedGroup;
+      return res.status(200).json({
+        status: 200,
+        data: [{
+          id,
+          name,
+          role,
+        }],
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
 export const {
@@ -136,4 +165,5 @@ export const {
   addAUserToGroup,
   deleteUserFromGroup,
   getAllGroupsByUser,
+  editGroupByName,
 } = GroupController;
