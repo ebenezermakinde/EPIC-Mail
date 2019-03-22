@@ -8,11 +8,11 @@ import { fetchSpecificGroupByUser } from '../config/sql';
  */
 class GroupControls {
   /**
-   * Fetch Specific Group By to the application
-   * @param {object} req - The request object
-   * @param {object} res - The response object
-   * @param {function} next - Calls the next function/route handler
-   * @returns {object} JSON representing the failure message.
+   * Helps find groups.
+   * @param {object} req  object
+   * @param {object} res  object
+   * @param {function} next - Calls the next function
+   * @returns {object} success or failure object
    */
   static async findSpecificGroup(req, res, next) {
     const { id } = req.authData;

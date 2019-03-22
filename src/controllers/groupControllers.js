@@ -8,6 +8,7 @@ import {
   removeGroupMembers,
   fetchAllGroupsByUser,
   patchGroupName,
+  deleteGroup,
 } from '../config/sql';
 
 /**
@@ -158,6 +159,29 @@ class GroupController {
       });
     }
   }
+
+  /**
+   * Delete Specific as specified by user
+   * @param {object} req  object
+   * @param {object} res object
+   * @param {function} next - Calls the next function/module
+   * @returns {object} success or failure response
+   */
+  static async deleteSpecificGroup(req, res) {
+    const { foundGroup } = req.body;
+    try {
+      await db.query(deleteGroup, [foundGroup.groupid]);
+      return res.status(200).json({
+        status: 200,
+        message: 'Group deleted successfully',
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
 export const {
@@ -166,4 +190,5 @@ export const {
   deleteUserFromGroup,
   getAllGroupsByUser,
   editGroupByName,
+  deleteSpecificGroup,
 } = GroupController;
