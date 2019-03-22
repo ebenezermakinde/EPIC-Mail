@@ -33,7 +33,7 @@ Project is currently being managed with Pivotal Tracker, a project management to
 
 ### Installation
 * filepath> git clone https://github.com/ebenezermakinde/EPIC-Mail.git
-* create database with postgres named `epic_db`
+* create database with postgres named `epic_mail_db`
 * run `npm i`
 * run `npm run migrate`
 * run `npm start`
@@ -52,6 +52,27 @@ S/N | Verb   | Endpoint                 | Description             |
   6 | Get    | /api/v1/messages/id      | Get a specific email    |
   7 | Post   | /api/v1/messages         | Send email to users     |
   8 | Delete | /api/v1/messages/id      | Delete an email         |
+
+  ## Technologies
+  
+### Backend
+
+* [NodeJS](http://nodejs.org/en) is a JavaScript runtime built on Chrome's V8 JavaScript engine
+* [Express JS](http://express.com) A minimalist web framework
+* [PostgreSQL](https://www.postgresql.org/) A powerful, open source object-relational database system.
+* [ESLint](eslint.org) provides a pluggable linting utility for JavaScript.
+* [Mocha](https://mochajs.org/) Mocha is a feature-rich JavaScript test framework running on [NodeJS](nodejs.org/en) for testing [Javascript](javascript.com) applications.
+
+### Frontend
+
+* [HTML](https://www.w3schools.com/html/) A markup language to for any actual website
+* [CSS](https://css-tricks.com/) A style sheet language to give your webiste that pizzazz.
+* [Javascript](http://javascript.info/) Javascript, a language that brings out the interactability of your website
+
+## Pivotal Tracker
+
+Project is currently being managed with Pivotal Tracker, a project management tool. You can find the stories on the [EPIC-M@IL Pivotal Tracker Board](https://www.pivotaltracker.com/n/projects/2314369)
+
 
 ### API Documentation :file_folder: :point_left:
 The API documentation page can be found here [EPIC-M@il](https://myepicmail.docs.apiary.io/)
