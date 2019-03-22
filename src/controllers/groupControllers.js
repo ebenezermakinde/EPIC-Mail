@@ -1,6 +1,11 @@
 import db from '../config';
 import {
-  createGroup, findUserById, insertAdminToGroupmembersTable, queryUsersByEmail, insertGroupMember,
+  createGroup,
+  findUserById,
+  insertAdminToGroupmembersTable,
+  queryUsersByEmail,
+  insertGroupMember,
+  removeGroupMembers,
 } from '../config/sql';
 
 /**
@@ -65,6 +70,38 @@ class GroupController {
       });
     }
   }
+
+  /**
+   * Delete user from a group
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {function} next - Calls the next function/route handler
+   * @returns {object} failure or success message.
+   */
+  static async deleteUserFromGroup(req, res) {
+    const { foundGroup } = req.body;
+    console.log('foundGroup', foundGroup);
+    const member = Number(req.params.userId);
+    console.log('member', member);
+    try {
+      const removeMember = await db.query(removeGroupMembers, [foundGroup.groupid, member]);
+      if (!removeMember) {
+        return res.status(404).json({
+          status: 404,
+          error: 'The user cannot be found',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: 'User was removed from the group',
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
+      });
+    }
+  }
 }
 
-export const { startGroup, addAUserToGroup } = GroupController;
+export const { startGroup, addAUserToGroup, deleteUserFromGroup } = GroupController;
